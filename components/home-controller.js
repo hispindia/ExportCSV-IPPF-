@@ -5,11 +5,16 @@
 ExportCSVApp.controller('homeController',
     function ($rootScope,
         $scope,
+        $location,
         OrgUnitService,
         PeriodService) {
 
         $scope.orgUnitGroups = {};
-       
+        // var url = $location.absUrl();
+        //     var x =url.substring(url.length-1, url.length);
+        // if(x != "/"){
+        //     console.log("done");
+        // }
 		/* **************************************************************************************
 		 **** RETRIEVING ROOT JSON AND NEEDED DATA ***********************************************
 		 ************************************************************************************* **/

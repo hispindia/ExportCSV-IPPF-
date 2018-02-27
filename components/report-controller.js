@@ -14,7 +14,7 @@ ExportCSVApp.controller('reportController',
 
         $scope.orgUnitGroups = {};
 
-		/* **************************************************************************************
+	/* **************************************************************************************
 		 **** RETRIEVING ROOT JSON AND NEEDED DATA ***********************************************
 		 ************************************************************************************* **/
         $scope.controllerData = {}
@@ -24,6 +24,28 @@ ExportCSVApp.controller('reportController',
         var aoc = 'X66r2y4EuwS';
         var more25 = 'CrE6h9KphAO';
         var less25 = 'Y2c16vWPBox';
+
+
+// Code for date 
+$scope.today = new Date();
+var dd = $scope.today.getDate();
+var mm = $scope.today.getMonth() + 1; //January is 0!
+var yyyy = $scope.today.getFullYear();
+if (dd < 10) {
+dd = '0' + dd
+}
+if (mm < 10) {
+mm = '0' + mm
+}
+$scope.today = dd + '/' + mm + '/' + yyyy;
+
+$.get('../../me.json?paging=false', function (user){
+
+    $scope.me = user.userCredentials.username;
+
+    //console.log($scope.me);
+
+})     
 
         $scope.addData = function (data, count1) {
             console.log(data);
@@ -64,13 +86,25 @@ ExportCSVApp.controller('reportController',
                 }), // new user less than 25
                 $.getJSON("../../analytics.json?dimension=dx:EtBBGY79cDv.J83ylYGKhbA;EtBBGY79cDv.YFztQ2vR71N;EtBBGY79cDv.pslMIlKFXBh;EtBBGY79cDv.HUIWuBTBq08;EtBBGY79cDv.yHSAPCLxecr;EtBBGY79cDv.Pch5POkRK8D;EtBBGY79cDv.UTolIBbDJGH;EtBBGY79cDv.cJJJCGGLTOi;EtBBGY79cDv.V0L9n6BBxKp;EtBBGY79cDv.VDDnYYh4gAK;EtBBGY79cDv.XpvgbSHy43w;EtBBGY79cDv.qEaRHNTa7mi;EtBBGY79cDv.cSY68ZH4wZg;EtBBGY79cDv.Z9N77nA1ZwN;EtBBGY79cDv.F1vIyc2K8oq;EtBBGY79cDv.SKR6BiGmH39;EtBBGY79cDv.K53Thqzzjya;EtBBGY79cDv.XBuwUD1utmH;GebmB0TKmJT.J83ylYGKhbA;GebmB0TKmJT.YFztQ2vR71N;GebmB0TKmJT.pslMIlKFXBh;GebmB0TKmJT.HUIWuBTBq08;GebmB0TKmJT.yHSAPCLxecr;GebmB0TKmJT.Pch5POkRK8D;GebmB0TKmJT.UTolIBbDJGH;GebmB0TKmJT.cJJJCGGLTOi;GebmB0TKmJT.V0L9n6BBxKp;GebmB0TKmJT.VDDnYYh4gAK;GebmB0TKmJT.XpvgbSHy43w;GebmB0TKmJT.qEaRHNTa7mi;GebmB0TKmJT.cSY68ZH4wZg;GebmB0TKmJT.Z9N77nA1ZwN;GebmB0TKmJT.F1vIyc2K8oq;GebmB0TKmJT.SKR6BiGmH39;GebmB0TKmJT.K53Thqzzjya;GebmB0TKmJT.XBuwUD1utmH;s2AtBJcVboI.J83ylYGKhbA;s2AtBJcVboI.YFztQ2vR71N;s2AtBJcVboI.pslMIlKFXBh;s2AtBJcVboI.HUIWuBTBq08;s2AtBJcVboI.yHSAPCLxecr;s2AtBJcVboI.Pch5POkRK8D;s2AtBJcVboI.UTolIBbDJGH;s2AtBJcVboI.cJJJCGGLTOi;s2AtBJcVboI.V0L9n6BBxKp;s2AtBJcVboI.VDDnYYh4gAK;s2AtBJcVboI.XpvgbSHy43w;s2AtBJcVboI.qEaRHNTa7mi;s2AtBJcVboI.cSY68ZH4wZg;s2AtBJcVboI.Z9N77nA1ZwN;s2AtBJcVboI.F1vIyc2K8oq;s2AtBJcVboI.SKR6BiGmH39;s2AtBJcVboI.K53Thqzzjya;s2AtBJcVboI.XBuwUD1utmH;dtISJbwPDx0.J83ylYGKhbA;dtISJbwPDx0.YFztQ2vR71N;dtISJbwPDx0.pslMIlKFXBh;dtISJbwPDx0.HUIWuBTBq08;dtISJbwPDx0.yHSAPCLxecr;dtISJbwPDx0.Pch5POkRK8D;dtISJbwPDx0.UTolIBbDJGH;dtISJbwPDx0.cJJJCGGLTOi;dtISJbwPDx0.V0L9n6BBxKp;dtISJbwPDx0.VDDnYYh4gAK;dtISJbwPDx0.XpvgbSHy43w;dtISJbwPDx0.qEaRHNTa7mi;dtISJbwPDx0.cSY68ZH4wZg;dtISJbwPDx0.Z9N77nA1ZwN;dtISJbwPDx0.F1vIyc2K8oq;dtISJbwPDx0.SKR6BiGmH39;dtISJbwPDx0.K53Thqzzjya;dtISJbwPDx0.XBuwUD1utmH;F9oqcI8uVd7.J83ylYGKhbA;F9oqcI8uVd7.YFztQ2vR71N;F9oqcI8uVd7.pslMIlKFXBh;F9oqcI8uVd7.HUIWuBTBq08;F9oqcI8uVd7.yHSAPCLxecr;F9oqcI8uVd7.Pch5POkRK8D;F9oqcI8uVd7.UTolIBbDJGH;F9oqcI8uVd7.cJJJCGGLTOi;F9oqcI8uVd7.V0L9n6BBxKp;F9oqcI8uVd7.VDDnYYh4gAK;F9oqcI8uVd7.XpvgbSHy43w;F9oqcI8uVd7.qEaRHNTa7mi;F9oqcI8uVd7.cSY68ZH4wZg;F9oqcI8uVd7.Z9N77nA1ZwN;F9oqcI8uVd7.F1vIyc2K8oq;F9oqcI8uVd7.SKR6BiGmH39;F9oqcI8uVd7.K53Thqzzjya;F9oqcI8uVd7.XBuwUD1utmH;Kj97LAJwVHS.J83ylYGKhbA;Kj97LAJwVHS.YFztQ2vR71N;Kj97LAJwVHS.pslMIlKFXBh;Kj97LAJwVHS.HUIWuBTBq08;Kj97LAJwVHS.yHSAPCLxecr;Kj97LAJwVHS.Pch5POkRK8D;Kj97LAJwVHS.UTolIBbDJGH;Kj97LAJwVHS.cJJJCGGLTOi;Kj97LAJwVHS.V0L9n6BBxKp;Kj97LAJwVHS.VDDnYYh4gAK;Kj97LAJwVHS.XpvgbSHy43w;Kj97LAJwVHS.qEaRHNTa7mi;Kj97LAJwVHS.cSY68ZH4wZg;Kj97LAJwVHS.Z9N77nA1ZwN;Kj97LAJwVHS.F1vIyc2K8oq;Kj97LAJwVHS.SKR6BiGmH39;Kj97LAJwVHS.K53Thqzzjya;Kj97LAJwVHS.XBuwUD1utmH;MyyyNqkLH31.J83ylYGKhbA;MyyyNqkLH31.YFztQ2vR71N;MyyyNqkLH31.pslMIlKFXBh;MyyyNqkLH31.HUIWuBTBq08;MyyyNqkLH31.yHSAPCLxecr;MyyyNqkLH31.Pch5POkRK8D;MyyyNqkLH31.UTolIBbDJGH;MyyyNqkLH31.cJJJCGGLTOi;MyyyNqkLH31.V0L9n6BBxKp;MyyyNqkLH31.VDDnYYh4gAK;MyyyNqkLH31.XpvgbSHy43w;MyyyNqkLH31.qEaRHNTa7mi;MyyyNqkLH31.cSY68ZH4wZg;MyyyNqkLH31.Z9N77nA1ZwN;MyyyNqkLH31.F1vIyc2K8oq;MyyyNqkLH31.SKR6BiGmH39;MyyyNqkLH31.K53Thqzzjya;MyyyNqkLH31.XBuwUD1utmH;EKBeCyCTs6N.J83ylYGKhbA;EKBeCyCTs6N.YFztQ2vR71N;EKBeCyCTs6N.pslMIlKFXBh;EKBeCyCTs6N.HUIWuBTBq08;EKBeCyCTs6N.yHSAPCLxecr;EKBeCyCTs6N.Pch5POkRK8D;EKBeCyCTs6N.UTolIBbDJGH;EKBeCyCTs6N.cJJJCGGLTOi;EKBeCyCTs6N.V0L9n6BBxKp;EKBeCyCTs6N.VDDnYYh4gAK;EKBeCyCTs6N.XpvgbSHy43w;EKBeCyCTs6N.qEaRHNTa7mi;EKBeCyCTs6N.cSY68ZH4wZg;EKBeCyCTs6N.Z9N77nA1ZwN;EKBeCyCTs6N.F1vIyc2K8oq;EKBeCyCTs6N.SKR6BiGmH39;EKBeCyCTs6N.K53Thqzzjya;EKBeCyCTs6N.XBuwUD1utmH;cBf5PFB4M3V.J83ylYGKhbA;cBf5PFB4M3V.YFztQ2vR71N;cBf5PFB4M3V.pslMIlKFXBh;cBf5PFB4M3V.HUIWuBTBq08;cBf5PFB4M3V.yHSAPCLxecr;cBf5PFB4M3V.Pch5POkRK8D;cBf5PFB4M3V.UTolIBbDJGH;cBf5PFB4M3V.cJJJCGGLTOi;cBf5PFB4M3V.V0L9n6BBxKp;cBf5PFB4M3V.VDDnYYh4gAK;cBf5PFB4M3V.XpvgbSHy43w;cBf5PFB4M3V.qEaRHNTa7mi;cBf5PFB4M3V.cSY68ZH4wZg;cBf5PFB4M3V.Z9N77nA1ZwN;cBf5PFB4M3V.F1vIyc2K8oq;cBf5PFB4M3V.SKR6BiGmH39;cBf5PFB4M3V.K53Thqzzjya;cBf5PFB4M3V.XBuwUD1utmH;YAZZmQ3cEb5.J83ylYGKhbA;YAZZmQ3cEb5.YFztQ2vR71N;YAZZmQ3cEb5.pslMIlKFXBh;YAZZmQ3cEb5.HUIWuBTBq08;YAZZmQ3cEb5.yHSAPCLxecr;YAZZmQ3cEb5.Pch5POkRK8D;YAZZmQ3cEb5.UTolIBbDJGH;YAZZmQ3cEb5.cJJJCGGLTOi;YAZZmQ3cEb5.V0L9n6BBxKp;YAZZmQ3cEb5.VDDnYYh4gAK;YAZZmQ3cEb5.XpvgbSHy43w;YAZZmQ3cEb5.qEaRHNTa7mi;YAZZmQ3cEb5.cSY68ZH4wZg;YAZZmQ3cEb5.Z9N77nA1ZwN;YAZZmQ3cEb5.F1vIyc2K8oq;YAZZmQ3cEb5.SKR6BiGmH39;YAZZmQ3cEb5.K53Thqzzjya;YAZZmQ3cEb5.XBuwUD1utmH;dcopt8wVXc9.J83ylYGKhbA;dcopt8wVXc9.YFztQ2vR71N;dcopt8wVXc9.pslMIlKFXBh;dcopt8wVXc9.HUIWuBTBq08;dcopt8wVXc9.yHSAPCLxecr;dcopt8wVXc9.Pch5POkRK8D;dcopt8wVXc9.UTolIBbDJGH;dcopt8wVXc9.cJJJCGGLTOi;dcopt8wVXc9.V0L9n6BBxKp;dcopt8wVXc9.VDDnYYh4gAK;dcopt8wVXc9.XpvgbSHy43w;dcopt8wVXc9.qEaRHNTa7mi;dcopt8wVXc9.cSY68ZH4wZg;dcopt8wVXc9.Z9N77nA1ZwN;dcopt8wVXc9.F1vIyc2K8oq;dcopt8wVXc9.SKR6BiGmH39;dcopt8wVXc9.K53Thqzzjya;dcopt8wVXc9.XBuwUD1utmH;UII6zgEqax1.J83ylYGKhbA;UII6zgEqax1.YFztQ2vR71N;UII6zgEqax1.pslMIlKFXBh;UII6zgEqax1.HUIWuBTBq08;UII6zgEqax1.yHSAPCLxecr;UII6zgEqax1.Pch5POkRK8D;UII6zgEqax1.UTolIBbDJGH;UII6zgEqax1.cJJJCGGLTOi;UII6zgEqax1.V0L9n6BBxKp;UII6zgEqax1.VDDnYYh4gAK;UII6zgEqax1.XpvgbSHy43w;UII6zgEqax1.qEaRHNTa7mi;UII6zgEqax1.cSY68ZH4wZg;UII6zgEqax1.Z9N77nA1ZwN;UII6zgEqax1.F1vIyc2K8oq;UII6zgEqax1.SKR6BiGmH39;UII6zgEqax1.K53Thqzzjya;UII6zgEqax1.XBuwUD1utmH;uACPYWLvBiS.J83ylYGKhbA;uACPYWLvBiS.YFztQ2vR71N;uACPYWLvBiS.pslMIlKFXBh;uACPYWLvBiS.HUIWuBTBq08;uACPYWLvBiS.yHSAPCLxecr;uACPYWLvBiS.Pch5POkRK8D;uACPYWLvBiS.UTolIBbDJGH;uACPYWLvBiS.cJJJCGGLTOi;uACPYWLvBiS.V0L9n6BBxKp;uACPYWLvBiS.VDDnYYh4gAK;uACPYWLvBiS.XpvgbSHy43w;uACPYWLvBiS.qEaRHNTa7mi;uACPYWLvBiS.cSY68ZH4wZg;uACPYWLvBiS.Z9N77nA1ZwN;uACPYWLvBiS.F1vIyc2K8oq;uACPYWLvBiS.SKR6BiGmH39;uACPYWLvBiS.K53Thqzzjya;uACPYWLvBiS.XBuwUD1utmH;Gs9BpNaBrXY.J83ylYGKhbA;Gs9BpNaBrXY.YFztQ2vR71N;Gs9BpNaBrXY.pslMIlKFXBh;Gs9BpNaBrXY.HUIWuBTBq08;Gs9BpNaBrXY.yHSAPCLxecr;Gs9BpNaBrXY.Pch5POkRK8D;Gs9BpNaBrXY.UTolIBbDJGH;Gs9BpNaBrXY.cJJJCGGLTOi;Gs9BpNaBrXY.V0L9n6BBxKp;Gs9BpNaBrXY.VDDnYYh4gAK;Gs9BpNaBrXY.XpvgbSHy43w;Gs9BpNaBrXY.qEaRHNTa7mi;Gs9BpNaBrXY.cSY68ZH4wZg;Gs9BpNaBrXY.Z9N77nA1ZwN;Gs9BpNaBrXY.F1vIyc2K8oq;Gs9BpNaBrXY.SKR6BiGmH39;Gs9BpNaBrXY.K53Thqzzjya;Gs9BpNaBrXY.XBuwUD1utmH;SXoo7ANON27.J83ylYGKhbA;SXoo7ANON27.YFztQ2vR71N;SXoo7ANON27.pslMIlKFXBh;SXoo7ANON27.HUIWuBTBq08;SXoo7ANON27.yHSAPCLxecr;SXoo7ANON27.Pch5POkRK8D;SXoo7ANON27.UTolIBbDJGH;SXoo7ANON27.cJJJCGGLTOi;SXoo7ANON27.V0L9n6BBxKp;SXoo7ANON27.VDDnYYh4gAK;SXoo7ANON27.XpvgbSHy43w;SXoo7ANON27.qEaRHNTa7mi;SXoo7ANON27.cSY68ZH4wZg;SXoo7ANON27.Z9N77nA1ZwN;SXoo7ANON27.F1vIyc2K8oq;SXoo7ANON27.SKR6BiGmH39;SXoo7ANON27.K53Thqzzjya;SXoo7ANON27.XBuwUD1utmH;dlEepWvRq4k.J83ylYGKhbA;dlEepWvRq4k.YFztQ2vR71N;dlEepWvRq4k.pslMIlKFXBh;dlEepWvRq4k.HUIWuBTBq08;dlEepWvRq4k.yHSAPCLxecr;dlEepWvRq4k.Pch5POkRK8D;dlEepWvRq4k.UTolIBbDJGH;dlEepWvRq4k.cJJJCGGLTOi;dlEepWvRq4k.V0L9n6BBxKp;dlEepWvRq4k.VDDnYYh4gAK;dlEepWvRq4k.XpvgbSHy43w;dlEepWvRq4k.qEaRHNTa7mi;dlEepWvRq4k.cSY68ZH4wZg;dlEepWvRq4k.Z9N77nA1ZwN;dlEepWvRq4k.F1vIyc2K8oq;dlEepWvRq4k.SKR6BiGmH39;dlEepWvRq4k.K53Thqzzjya;dlEepWvRq4k.XBuwUD1utmH;FZSHapEkYE6.J83ylYGKhbA;FZSHapEkYE6.YFztQ2vR71N;FZSHapEkYE6.pslMIlKFXBh;FZSHapEkYE6.HUIWuBTBq08;FZSHapEkYE6.yHSAPCLxecr;FZSHapEkYE6.Pch5POkRK8D;FZSHapEkYE6.UTolIBbDJGH;FZSHapEkYE6.cJJJCGGLTOi;FZSHapEkYE6.V0L9n6BBxKp;FZSHapEkYE6.VDDnYYh4gAK;FZSHapEkYE6.XpvgbSHy43w;FZSHapEkYE6.qEaRHNTa7mi;FZSHapEkYE6.cSY68ZH4wZg;FZSHapEkYE6.Z9N77nA1ZwN;FZSHapEkYE6.F1vIyc2K8oq;FZSHapEkYE6.SKR6BiGmH39;FZSHapEkYE6.K53Thqzzjya;FZSHapEkYE6.XBuwUD1utmH;&dimension=ou:OU_GROUP-" + $scope.orgId + "&filter=pe:" + $scope.periodId + "&displayProperty=NAME", {
                     format: "json"
-                }), // service more than 25
+                }), // service more than 25 res6
                 $.getJSON("../../analytics.json?dimension=dx:pGeBz8X2jRq.J83ylYGKhbA;pGeBz8X2jRq.YFztQ2vR71N;pGeBz8X2jRq.pslMIlKFXBh;pGeBz8X2jRq.HUIWuBTBq08;pGeBz8X2jRq.yHSAPCLxecr;pGeBz8X2jRq.Pch5POkRK8D;pGeBz8X2jRq.UTolIBbDJGH;pGeBz8X2jRq.cJJJCGGLTOi;pGeBz8X2jRq.V0L9n6BBxKp;pGeBz8X2jRq.VDDnYYh4gAK;pGeBz8X2jRq.XpvgbSHy43w;pGeBz8X2jRq.qEaRHNTa7mi;pGeBz8X2jRq.cSY68ZH4wZg;pGeBz8X2jRq.Z9N77nA1ZwN;pGeBz8X2jRq.F1vIyc2K8oq;pGeBz8X2jRq.SKR6BiGmH39;pGeBz8X2jRq.K53Thqzzjya;pGeBz8X2jRq.XBuwUD1utmH;vde3WauuLlB.J83ylYGKhbA;vde3WauuLlB.YFztQ2vR71N;vde3WauuLlB.pslMIlKFXBh;vde3WauuLlB.HUIWuBTBq08;vde3WauuLlB.yHSAPCLxecr;vde3WauuLlB.Pch5POkRK8D;vde3WauuLlB.UTolIBbDJGH;vde3WauuLlB.cJJJCGGLTOi;vde3WauuLlB.V0L9n6BBxKp;vde3WauuLlB.VDDnYYh4gAK;vde3WauuLlB.XpvgbSHy43w;vde3WauuLlB.qEaRHNTa7mi;vde3WauuLlB.cSY68ZH4wZg;vde3WauuLlB.Z9N77nA1ZwN;vde3WauuLlB.F1vIyc2K8oq;vde3WauuLlB.SKR6BiGmH39;vde3WauuLlB.K53Thqzzjya;vde3WauuLlB.XBuwUD1utmH;OBgHxL0dDc6.J83ylYGKhbA;OBgHxL0dDc6.YFztQ2vR71N;OBgHxL0dDc6.pslMIlKFXBh;OBgHxL0dDc6.HUIWuBTBq08;OBgHxL0dDc6.yHSAPCLxecr;OBgHxL0dDc6.Pch5POkRK8D;OBgHxL0dDc6.UTolIBbDJGH;OBgHxL0dDc6.cJJJCGGLTOi;OBgHxL0dDc6.V0L9n6BBxKp;OBgHxL0dDc6.VDDnYYh4gAK;OBgHxL0dDc6.XpvgbSHy43w;OBgHxL0dDc6.qEaRHNTa7mi;OBgHxL0dDc6.cSY68ZH4wZg;OBgHxL0dDc6.Z9N77nA1ZwN;OBgHxL0dDc6.F1vIyc2K8oq;OBgHxL0dDc6.SKR6BiGmH39;OBgHxL0dDc6.K53Thqzzjya;OBgHxL0dDc6.XBuwUD1utmH;yRty32xvXkU.J83ylYGKhbA;yRty32xvXkU.YFztQ2vR71N;yRty32xvXkU.pslMIlKFXBh;yRty32xvXkU.HUIWuBTBq08;yRty32xvXkU.yHSAPCLxecr;yRty32xvXkU.Pch5POkRK8D;yRty32xvXkU.UTolIBbDJGH;yRty32xvXkU.cJJJCGGLTOi;yRty32xvXkU.V0L9n6BBxKp;yRty32xvXkU.VDDnYYh4gAK;yRty32xvXkU.XpvgbSHy43w;yRty32xvXkU.qEaRHNTa7mi;yRty32xvXkU.cSY68ZH4wZg;yRty32xvXkU.Z9N77nA1ZwN;yRty32xvXkU.F1vIyc2K8oq;yRty32xvXkU.SKR6BiGmH39;yRty32xvXkU.K53Thqzzjya;yRty32xvXkU.XBuwUD1utmH;yRty32xvXkU.K53Thqzzjya;yRty32xvXkU.XBuwUD1utmH;OcxH8p4agPL.J83ylYGKhbA;OcxH8p4agPL.YFztQ2vR71N;OcxH8p4agPL.pslMIlKFXBh;OcxH8p4agPL.HUIWuBTBq08;OcxH8p4agPL.yHSAPCLxecr;OcxH8p4agPL.Pch5POkRK8D;OcxH8p4agPL.UTolIBbDJGH;OcxH8p4agPL.cJJJCGGLTOi;OcxH8p4agPL.V0L9n6BBxKp;OcxH8p4agPL.VDDnYYh4gAK;OcxH8p4agPL.XpvgbSHy43w;OcxH8p4agPL.qEaRHNTa7mi;OcxH8p4agPL.cSY68ZH4wZg;OcxH8p4agPL.Z9N77nA1ZwN;OcxH8p4agPL.F1vIyc2K8oq;OcxH8p4agPL.SKR6BiGmH39;OcxH8p4agPL.K53Thqzzjya;OcxH8p4agPL.XBuwUD1utmH;OcxH8p4agPL.K53Thqzzjya;OcxH8p4agPL.XBuwUD1utmH;QKDWB3D3Rfp.J83ylYGKhbA;QKDWB3D3Rfp.YFztQ2vR71N;QKDWB3D3Rfp.pslMIlKFXBh;QKDWB3D3Rfp.HUIWuBTBq08;QKDWB3D3Rfp.yHSAPCLxecr;QKDWB3D3Rfp.Pch5POkRK8D;QKDWB3D3Rfp.UTolIBbDJGH;QKDWB3D3Rfp.cJJJCGGLTOi;QKDWB3D3Rfp.V0L9n6BBxKp;QKDWB3D3Rfp.VDDnYYh4gAK;QKDWB3D3Rfp.XpvgbSHy43w;QKDWB3D3Rfp.qEaRHNTa7mi;QKDWB3D3Rfp.cSY68ZH4wZg;QKDWB3D3Rfp.Z9N77nA1ZwN;QKDWB3D3Rfp.F1vIyc2K8oq;QKDWB3D3Rfp.SKR6BiGmH39;QKDWB3D3Rfp.K53Thqzzjya;QKDWB3D3Rfp.XBuwUD1utmH;pGeBz8X2jRq.J83ylYGKhbA;pGeBz8X2jRq.YFztQ2vR71N;pGeBz8X2jRq.pslMIlKFXBh;pGeBz8X2jRq.HUIWuBTBq08;pGeBz8X2jRq.yHSAPCLxecr;pGeBz8X2jRq.Pch5POkRK8D;pGeBz8X2jRq.UTolIBbDJGH;pGeBz8X2jRq.cJJJCGGLTOi;pGeBz8X2jRq.V0L9n6BBxKp;pGeBz8X2jRq.VDDnYYh4gAK;pGeBz8X2jRq.XpvgbSHy43w;pGeBz8X2jRq.qEaRHNTa7mi;pGeBz8X2jRq.cSY68ZH4wZg;pGeBz8X2jRq.Z9N77nA1ZwN;pGeBz8X2jRq.F1vIyc2K8oq;pGeBz8X2jRq.SKR6BiGmH39;pGeBz8X2jRq.K53Thqzzjya;pGeBz8X2jRq.XBuwUD1utmH;vde3WauuLlB.J83ylYGKhbA;vde3WauuLlB.YFztQ2vR71N;vde3WauuLlB.pslMIlKFXBh;vde3WauuLlB.HUIWuBTBq08;vde3WauuLlB.yHSAPCLxecr;vde3WauuLlB.Pch5POkRK8D;vde3WauuLlB.UTolIBbDJGH;vde3WauuLlB.cJJJCGGLTOi;vde3WauuLlB.V0L9n6BBxKp;vde3WauuLlB.VDDnYYh4gAK;vde3WauuLlB.XpvgbSHy43w;vde3WauuLlB.qEaRHNTa7mi;vde3WauuLlB.cSY68ZH4wZg;vde3WauuLlB.Z9N77nA1ZwN;vde3WauuLlB.F1vIyc2K8oq;vde3WauuLlB.SKR6BiGmH39;vde3WauuLlB.K53Thqzzjya;vde3WauuLlB.XBuwUD1utmH;OBgHxL0dDc6.J83ylYGKhbA;OBgHxL0dDc6.YFztQ2vR71N;OBgHxL0dDc6.pslMIlKFXBh;OBgHxL0dDc6.HUIWuBTBq08;OBgHxL0dDc6.yHSAPCLxecr;OBgHxL0dDc6.Pch5POkRK8D;OBgHxL0dDc6.UTolIBbDJGH;OBgHxL0dDc6.cJJJCGGLTOi;OBgHxL0dDc6.V0L9n6BBxKp;OBgHxL0dDc6.VDDnYYh4gAK;OBgHxL0dDc6.XpvgbSHy43w;OBgHxL0dDc6.qEaRHNTa7mi;OBgHxL0dDc6.cSY68ZH4wZg;OBgHxL0dDc6.Z9N77nA1ZwN;OBgHxL0dDc6.F1vIyc2K8oq;OBgHxL0dDc6.SKR6BiGmH39;OBgHxL0dDc6.K53Thqzzjya;OBgHxL0dDc6.XBuwUD1utmH;sbRu86GdCou.J83ylYGKhbA;sbRu86GdCou.YFztQ2vR71N;sbRu86GdCou.pslMIlKFXBh;sbRu86GdCou.HUIWuBTBq08;sbRu86GdCou.yHSAPCLxecr;sbRu86GdCou.Pch5POkRK8D;sbRu86GdCou.UTolIBbDJGH;sbRu86GdCou.cJJJCGGLTOi;sbRu86GdCou.V0L9n6BBxKp;sbRu86GdCou.VDDnYYh4gAK;sbRu86GdCou.XpvgbSHy43w;sbRu86GdCou.qEaRHNTa7mi;sbRu86GdCou.cSY68ZH4wZg;sbRu86GdCou.Z9N77nA1ZwN;sbRu86GdCou.F1vIyc2K8oq;sbRu86GdCou.SKR6BiGmH39;sbRu86GdCou.K53Thqzzjya;sbRu86GdCou.XBuwUD1utmH;sbRu86GdCou.K53Thqzzjya;sbRu86GdCou.XBuwUD1utmH;Mqz9ktHV2qp.J83ylYGKhbA;Mqz9ktHV2qp.YFztQ2vR71N;Mqz9ktHV2qp.pslMIlKFXBh;Mqz9ktHV2qp.HUIWuBTBq08;Mqz9ktHV2qp.yHSAPCLxecr;Mqz9ktHV2qp.Pch5POkRK8D;Mqz9ktHV2qp.UTolIBbDJGH;Mqz9ktHV2qp.cJJJCGGLTOi;Mqz9ktHV2qp.V0L9n6BBxKp;Mqz9ktHV2qp.VDDnYYh4gAK;Mqz9ktHV2qp.XpvgbSHy43w;Mqz9ktHV2qp.qEaRHNTa7mi;Mqz9ktHV2qp.cSY68ZH4wZg;Mqz9ktHV2qp.Z9N77nA1ZwN;Mqz9ktHV2qp.F1vIyc2K8oq;Mqz9ktHV2qp.SKR6BiGmH39;Mqz9ktHV2qp.K53Thqzzjya;Mqz9ktHV2qp.XBuwUD1utmH;Mqz9ktHV2qp.K53Thqzzjya;Mqz9ktHV2qp.XBuwUD1utmH;ExnwTdbvzga.J83ylYGKhbA;ExnwTdbvzga.YFztQ2vR71N;ExnwTdbvzga.pslMIlKFXBh;ExnwTdbvzga.HUIWuBTBq08;ExnwTdbvzga.yHSAPCLxecr;ExnwTdbvzga.Pch5POkRK8D;ExnwTdbvzga.UTolIBbDJGH;ExnwTdbvzga.cJJJCGGLTOi;ExnwTdbvzga.V0L9n6BBxKp;ExnwTdbvzga.VDDnYYh4gAK;ExnwTdbvzga.XpvgbSHy43w;ExnwTdbvzga.qEaRHNTa7mi;ExnwTdbvzga.cSY68ZH4wZg;ExnwTdbvzga.Z9N77nA1ZwN;ExnwTdbvzga.F1vIyc2K8oq;ExnwTdbvzga.SKR6BiGmH39;ExnwTdbvzga.K53Thqzzjya;ExnwTdbvzga.XBuwUD1utmH;ExnwTdbvzga.K53Thqzzjya;ExnwTdbvzga.XBuwUD1utmH;p5YojCfJtwR.J83ylYGKhbA;p5YojCfJtwR.YFztQ2vR71N;p5YojCfJtwR.pslMIlKFXBh;p5YojCfJtwR.HUIWuBTBq08;p5YojCfJtwR.yHSAPCLxecr;p5YojCfJtwR.Pch5POkRK8D;p5YojCfJtwR.UTolIBbDJGH;p5YojCfJtwR.cJJJCGGLTOi;p5YojCfJtwR.V0L9n6BBxKp;p5YojCfJtwR.VDDnYYh4gAK;p5YojCfJtwR.XpvgbSHy43w;p5YojCfJtwR.qEaRHNTa7mi;p5YojCfJtwR.cSY68ZH4wZg;p5YojCfJtwR.Z9N77nA1ZwN;p5YojCfJtwR.F1vIyc2K8oq;p5YojCfJtwR.SKR6BiGmH39;p5YojCfJtwR.K53Thqzzjya;p5YojCfJtwR.XBuwUD1utmH;p5YojCfJtwR.K53Thqzzjya;p5YojCfJtwR.XBuwUD1utmH;&dimension=ou:OU_GROUP-" + $scope.orgId + "&filter=pe:" + $scope.periodId + "&displayProperty=NAME", {
                     format: "json"
+                }), // service more than 25 res7
+                $.getJSON("../../analytics.json?dimension=dx:OgbsfavEeMo.J83ylYGKhbA;OgbsfavEeMo.YFztQ2vR71N;OgbsfavEeMo.pslMIlKFXBh;OgbsfavEeMo.HUIWuBTBq08;OgbsfavEeMo.yHSAPCLxecr;OgbsfavEeMo.Pch5POkRK8D;OgbsfavEeMo.UTolIBbDJGH;OgbsfavEeMo.cJJJCGGLTOi;OgbsfavEeMo.V0L9n6BBxKp;OgbsfavEeMo.VDDnYYh4gAK;OgbsfavEeMo.XpvgbSHy43w;OgbsfavEeMo.qEaRHNTa7mi;OgbsfavEeMo.cSY68ZH4wZg;OgbsfavEeMo.Z9N77nA1ZwN;OgbsfavEeMo.F1vIyc2K8oq;OgbsfavEeMo.SKR6BiGmH39;OgbsfavEeMo.K53Thqzzjya;OgbsfavEeMo.XBuwUD1utmH;OgbsfavEeMo.K53Thqzzjya;OgbsfavEeMo.XBuwUD1utmH;jQLyrvVI75w.J83ylYGKhbA;jQLyrvVI75w.YFztQ2vR71N;jQLyrvVI75w.pslMIlKFXBh;jQLyrvVI75w.HUIWuBTBq08;jQLyrvVI75w.yHSAPCLxecr;jQLyrvVI75w.Pch5POkRK8D;jQLyrvVI75w.UTolIBbDJGH;jQLyrvVI75w.cJJJCGGLTOi;jQLyrvVI75w.V0L9n6BBxKp;jQLyrvVI75w.VDDnYYh4gAK;jQLyrvVI75w.XpvgbSHy43w;jQLyrvVI75w.qEaRHNTa7mi;jQLyrvVI75w.cSY68ZH4wZg;jQLyrvVI75w.Z9N77nA1ZwN;jQLyrvVI75w.F1vIyc2K8oq;jQLyrvVI75w.SKR6BiGmH39;jQLyrvVI75w.K53Thqzzjya;jQLyrvVI75w.XBuwUD1utmH;jQLyrvVI75w.K53Thqzzjya;jQLyrvVI75w.XBuwUD1utmH;zRinuwShWjC.J83ylYGKhbA;zRinuwShWjC.YFztQ2vR71N;zRinuwShWjC.pslMIlKFXBh;zRinuwShWjC.HUIWuBTBq08;zRinuwShWjC.yHSAPCLxecr;zRinuwShWjC.Pch5POkRK8D;zRinuwShWjC.UTolIBbDJGH;zRinuwShWjC.cJJJCGGLTOi;zRinuwShWjC.V0L9n6BBxKp;zRinuwShWjC.VDDnYYh4gAK;zRinuwShWjC.XpvgbSHy43w;zRinuwShWjC.qEaRHNTa7mi;zRinuwShWjC.cSY68ZH4wZg;zRinuwShWjC.Z9N77nA1ZwN;zRinuwShWjC.F1vIyc2K8oq;zRinuwShWjC.SKR6BiGmH39;zRinuwShWjC.K53Thqzzjya;zRinuwShWjC.XBuwUD1utmH;zRinuwShWjC.K53Thqzzjya;zRinuwShWjC.XBuwUD1utmH;BHoiRswS9Ms.J83ylYGKhbA;BHoiRswS9Ms.YFztQ2vR71N;BHoiRswS9Ms.pslMIlKFXBh;BHoiRswS9Ms.HUIWuBTBq08;BHoiRswS9Ms.yHSAPCLxecr;BHoiRswS9Ms.Pch5POkRK8D;BHoiRswS9Ms.UTolIBbDJGH;BHoiRswS9Ms.cJJJCGGLTOi;BHoiRswS9Ms.V0L9n6BBxKp;BHoiRswS9Ms.VDDnYYh4gAK;BHoiRswS9Ms.XpvgbSHy43w;BHoiRswS9Ms.qEaRHNTa7mi;BHoiRswS9Ms.cSY68ZH4wZg;BHoiRswS9Ms.Z9N77nA1ZwN;BHoiRswS9Ms.F1vIyc2K8oq;BHoiRswS9Ms.SKR6BiGmH39;BHoiRswS9Ms.K53Thqzzjya;BHoiRswS9Ms.XBuwUD1utmH;BHoiRswS9Ms.K53Thqzzjya;BHoiRswS9Ms.XBuwUD1utmH;Qjg8srfIKaY.J83ylYGKhbA;Qjg8srfIKaY.YFztQ2vR71N;Qjg8srfIKaY.pslMIlKFXBh;Qjg8srfIKaY.HUIWuBTBq08;Qjg8srfIKaY.yHSAPCLxecr;Qjg8srfIKaY.Pch5POkRK8D;Qjg8srfIKaY.UTolIBbDJGH;Qjg8srfIKaY.cJJJCGGLTOi;Qjg8srfIKaY.V0L9n6BBxKp;Qjg8srfIKaY.VDDnYYh4gAK;Qjg8srfIKaY.XpvgbSHy43w;Qjg8srfIKaY.qEaRHNTa7mi;Qjg8srfIKaY.cSY68ZH4wZg;Qjg8srfIKaY.Z9N77nA1ZwN;Qjg8srfIKaY.F1vIyc2K8oq;Qjg8srfIKaY.SKR6BiGmH39;Qjg8srfIKaY.K53Thqzzjya;Qjg8srfIKaY.XBuwUD1utmH;Qjg8srfIKaY.K53Thqzzjya;Qjg8srfIKaY.XBuwUD1utmH;fzhus2HMb17.J83ylYGKhbA;fzhus2HMb17.YFztQ2vR71N;fzhus2HMb17.pslMIlKFXBh;fzhus2HMb17.HUIWuBTBq08;fzhus2HMb17.yHSAPCLxecr;fzhus2HMb17.Pch5POkRK8D;fzhus2HMb17.UTolIBbDJGH;fzhus2HMb17.cJJJCGGLTOi;fzhus2HMb17.V0L9n6BBxKp;fzhus2HMb17.VDDnYYh4gAK;fzhus2HMb17.XpvgbSHy43w;fzhus2HMb17.qEaRHNTa7mi;fzhus2HMb17.cSY68ZH4wZg;fzhus2HMb17.Z9N77nA1ZwN;fzhus2HMb17.F1vIyc2K8oq;fzhus2HMb17.SKR6BiGmH39;fzhus2HMb17.K53Thqzzjya;fzhus2HMb17.XBuwUD1utmH;fzhus2HMb17.K53Thqzzjya;fzhus2HMb17.XBuwUD1utmH;SDYyzMdkywv.J83ylYGKhbA;SDYyzMdkywv.YFztQ2vR71N;SDYyzMdkywv.pslMIlKFXBh;SDYyzMdkywv.HUIWuBTBq08;SDYyzMdkywv.yHSAPCLxecr;SDYyzMdkywv.Pch5POkRK8D;SDYyzMdkywv.UTolIBbDJGH;SDYyzMdkywv.cJJJCGGLTOi;SDYyzMdkywv.V0L9n6BBxKp;SDYyzMdkywv.VDDnYYh4gAK;SDYyzMdkywv.XpvgbSHy43w;SDYyzMdkywv.qEaRHNTa7mi;SDYyzMdkywv.cSY68ZH4wZg;SDYyzMdkywv.Z9N77nA1ZwN;SDYyzMdkywv.F1vIyc2K8oq;SDYyzMdkywv.SKR6BiGmH39;SDYyzMdkywv.K53Thqzzjya;SDYyzMdkywv.XBuwUD1utmH;SDYyzMdkywv.K53Thqzzjya;SDYyzMdkywv.XBuwUD1utmH;VwinA9WuHFn.J83ylYGKhbA;VwinA9WuHFn.YFztQ2vR71N;VwinA9WuHFn.pslMIlKFXBh;VwinA9WuHFn.HUIWuBTBq08;VwinA9WuHFn.yHSAPCLxecr;VwinA9WuHFn.Pch5POkRK8D;VwinA9WuHFn.UTolIBbDJGH;VwinA9WuHFn.cJJJCGGLTOi;VwinA9WuHFn.V0L9n6BBxKp;VwinA9WuHFn.VDDnYYh4gAK;VwinA9WuHFn.XpvgbSHy43w;VwinA9WuHFn.qEaRHNTa7mi;VwinA9WuHFn.cSY68ZH4wZg;VwinA9WuHFn.Z9N77nA1ZwN;VwinA9WuHFn.F1vIyc2K8oq;VwinA9WuHFn.SKR6BiGmH39;VwinA9WuHFn.K53Thqzzjya;VwinA9WuHFn.XBuwUD1utmH;VwinA9WuHFn.K53Thqzzjya;VwinA9WuHFn.XBuwUD1utmH;GBv3sGOHoDy.J83ylYGKhbA;GBv3sGOHoDy.YFztQ2vR71N;GBv3sGOHoDy.pslMIlKFXBh;GBv3sGOHoDy.HUIWuBTBq08;GBv3sGOHoDy.yHSAPCLxecr;GBv3sGOHoDy.Pch5POkRK8D;GBv3sGOHoDy.UTolIBbDJGH;GBv3sGOHoDy.cJJJCGGLTOi;GBv3sGOHoDy.V0L9n6BBxKp;GBv3sGOHoDy.VDDnYYh4gAK;GBv3sGOHoDy.XpvgbSHy43w;GBv3sGOHoDy.qEaRHNTa7mi;GBv3sGOHoDy.cSY68ZH4wZg;GBv3sGOHoDy.Z9N77nA1ZwN;GBv3sGOHoDy.F1vIyc2K8oq;GBv3sGOHoDy.SKR6BiGmH39;GBv3sGOHoDy.K53Thqzzjya;GBv3sGOHoDy.XBuwUD1utmH;GBv3sGOHoDy.K53Thqzzjya;GBv3sGOHoDy.XBuwUD1utmH;APYJLOf2T3m.J83ylYGKhbA;APYJLOf2T3m.YFztQ2vR71N;APYJLOf2T3m.pslMIlKFXBh;APYJLOf2T3m.HUIWuBTBq08;APYJLOf2T3m.yHSAPCLxecr;APYJLOf2T3m.Pch5POkRK8D;APYJLOf2T3m.UTolIBbDJGH;APYJLOf2T3m.cJJJCGGLTOi;APYJLOf2T3m.V0L9n6BBxKp;APYJLOf2T3m.VDDnYYh4gAK;APYJLOf2T3m.XpvgbSHy43w;APYJLOf2T3m.qEaRHNTa7mi;APYJLOf2T3m.cSY68ZH4wZg;APYJLOf2T3m.Z9N77nA1ZwN;APYJLOf2T3m.F1vIyc2K8oq;APYJLOf2T3m.SKR6BiGmH39;APYJLOf2T3m.K53Thqzzjya;APYJLOf2T3m.XBuwUD1utmH;APYJLOf2T3m.K53Thqzzjya;APYJLOf2T3m.XBuwUD1utmH;&dimension=ou:OU_GROUP-" + $scope.orgId + "&filter=pe:" + $scope.periodId + "&displayProperty=NAME", {
+                    format: "json"
+                }), // service more than 25 res8
+                $.getJSON("../../analytics.json?dimension=dx:JOVT5Ik9hlO.J83ylYGKhbA;JOVT5Ik9hlO.YFztQ2vR71N;JOVT5Ik9hlO.pslMIlKFXBh;JOVT5Ik9hlO.HUIWuBTBq08;JOVT5Ik9hlO.yHSAPCLxecr;JOVT5Ik9hlO.Pch5POkRK8D;JOVT5Ik9hlO.UTolIBbDJGH;JOVT5Ik9hlO.cJJJCGGLTOi;JOVT5Ik9hlO.V0L9n6BBxKp;JOVT5Ik9hlO.VDDnYYh4gAK;JOVT5Ik9hlO.XpvgbSHy43w;JOVT5Ik9hlO.qEaRHNTa7mi;JOVT5Ik9hlO.cSY68ZH4wZg;JOVT5Ik9hlO.Z9N77nA1ZwN;JOVT5Ik9hlO.F1vIyc2K8oq;JOVT5Ik9hlO.SKR6BiGmH39;JOVT5Ik9hlO.K53Thqzzjya;JOVT5Ik9hlO.XBuwUD1utmH;JOVT5Ik9hlO.K53Thqzzjya;JOVT5Ik9hlO.XBuwUD1utmH;bLPpYw9uyMg.J83ylYGKhbA;bLPpYw9uyMg.YFztQ2vR71N;bLPpYw9uyMg.pslMIlKFXBh;bLPpYw9uyMg.HUIWuBTBq08;bLPpYw9uyMg.yHSAPCLxecr;bLPpYw9uyMg.Pch5POkRK8D;bLPpYw9uyMg.UTolIBbDJGH;bLPpYw9uyMg.cJJJCGGLTOi;bLPpYw9uyMg.V0L9n6BBxKp;bLPpYw9uyMg.VDDnYYh4gAK;bLPpYw9uyMg.XpvgbSHy43w;bLPpYw9uyMg.qEaRHNTa7mi;bLPpYw9uyMg.cSY68ZH4wZg;bLPpYw9uyMg.Z9N77nA1ZwN;bLPpYw9uyMg.F1vIyc2K8oq;bLPpYw9uyMg.SKR6BiGmH39;bLPpYw9uyMg.K53Thqzzjya;bLPpYw9uyMg.XBuwUD1utmH;bLPpYw9uyMg.K53Thqzzjya;bLPpYw9uyMg.XBuwUD1utmH;VHIrQfXq4jZ.J83ylYGKhbA;VHIrQfXq4jZ.YFztQ2vR71N;VHIrQfXq4jZ.pslMIlKFXBh;VHIrQfXq4jZ.HUIWuBTBq08;VHIrQfXq4jZ.yHSAPCLxecr;VHIrQfXq4jZ.Pch5POkRK8D;VHIrQfXq4jZ.UTolIBbDJGH;VHIrQfXq4jZ.cJJJCGGLTOi;VHIrQfXq4jZ.V0L9n6BBxKp;VHIrQfXq4jZ.VDDnYYh4gAK;VHIrQfXq4jZ.XpvgbSHy43w;VHIrQfXq4jZ.qEaRHNTa7mi;VHIrQfXq4jZ.cSY68ZH4wZg;VHIrQfXq4jZ.Z9N77nA1ZwN;VHIrQfXq4jZ.F1vIyc2K8oq;VHIrQfXq4jZ.SKR6BiGmH39;VHIrQfXq4jZ.K53Thqzzjya;VHIrQfXq4jZ.XBuwUD1utmH;VHIrQfXq4jZ.K53Thqzzjya;VHIrQfXq4jZ.XBuwUD1utmH;NagGCvaoIXC.J83ylYGKhbA;NagGCvaoIXC.YFztQ2vR71N;NagGCvaoIXC.pslMIlKFXBh;NagGCvaoIXC.HUIWuBTBq08;NagGCvaoIXC.yHSAPCLxecr;NagGCvaoIXC.Pch5POkRK8D;NagGCvaoIXC.UTolIBbDJGH;NagGCvaoIXC.cJJJCGGLTOi;NagGCvaoIXC.V0L9n6BBxKp;NagGCvaoIXC.VDDnYYh4gAK;NagGCvaoIXC.XpvgbSHy43w;NagGCvaoIXC.qEaRHNTa7mi;NagGCvaoIXC.cSY68ZH4wZg;NagGCvaoIXC.Z9N77nA1ZwN;NagGCvaoIXC.F1vIyc2K8oq;NagGCvaoIXC.SKR6BiGmH39;NagGCvaoIXC.K53Thqzzjya;NagGCvaoIXC.XBuwUD1utmH;NagGCvaoIXC.K53Thqzzjya;NagGCvaoIXC.XBuwUD1utmH;W4Bfg7wuLHw.J83ylYGKhbA;W4Bfg7wuLHw.YFztQ2vR71N;W4Bfg7wuLHw.pslMIlKFXBh;W4Bfg7wuLHw.HUIWuBTBq08;W4Bfg7wuLHw.yHSAPCLxecr;W4Bfg7wuLHw.Pch5POkRK8D;W4Bfg7wuLHw.UTolIBbDJGH;W4Bfg7wuLHw.cJJJCGGLTOi;W4Bfg7wuLHw.V0L9n6BBxKp;W4Bfg7wuLHw.VDDnYYh4gAK;W4Bfg7wuLHw.XpvgbSHy43w;W4Bfg7wuLHw.qEaRHNTa7mi;W4Bfg7wuLHw.cSY68ZH4wZg;W4Bfg7wuLHw.Z9N77nA1ZwN;W4Bfg7wuLHw.F1vIyc2K8oq;W4Bfg7wuLHw.SKR6BiGmH39;W4Bfg7wuLHw.K53Thqzzjya;W4Bfg7wuLHw.XBuwUD1utmH;W4Bfg7wuLHw.K53Thqzzjya;W4Bfg7wuLHw.XBuwUD1utmH;LVXGOxBuTSe.J83ylYGKhbA;LVXGOxBuTSe.YFztQ2vR71N;LVXGOxBuTSe.pslMIlKFXBh;LVXGOxBuTSe.HUIWuBTBq08;LVXGOxBuTSe.yHSAPCLxecr;LVXGOxBuTSe.Pch5POkRK8D;LVXGOxBuTSe.UTolIBbDJGH;LVXGOxBuTSe.cJJJCGGLTOi;LVXGOxBuTSe.V0L9n6BBxKp;LVXGOxBuTSe.VDDnYYh4gAK;LVXGOxBuTSe.XpvgbSHy43w;LVXGOxBuTSe.qEaRHNTa7mi;LVXGOxBuTSe.cSY68ZH4wZg;LVXGOxBuTSe.Z9N77nA1ZwN;LVXGOxBuTSe.F1vIyc2K8oq;LVXGOxBuTSe.SKR6BiGmH39;LVXGOxBuTSe.K53Thqzzjya;LVXGOxBuTSe.XBuwUD1utmH;LVXGOxBuTSe.K53Thqzzjya;LVXGOxBuTSe.XBuwUD1utmH;b6zR64TtP2h.J83ylYGKhbA;b6zR64TtP2h.YFztQ2vR71N;b6zR64TtP2h.pslMIlKFXBh;b6zR64TtP2h.HUIWuBTBq08;b6zR64TtP2h.yHSAPCLxecr;b6zR64TtP2h.Pch5POkRK8D;b6zR64TtP2h.UTolIBbDJGH;b6zR64TtP2h.cJJJCGGLTOi;b6zR64TtP2h.V0L9n6BBxKp;b6zR64TtP2h.VDDnYYh4gAK;b6zR64TtP2h.XpvgbSHy43w;b6zR64TtP2h.qEaRHNTa7mi;b6zR64TtP2h.cSY68ZH4wZg;b6zR64TtP2h.Z9N77nA1ZwN;b6zR64TtP2h.F1vIyc2K8oq;b6zR64TtP2h.SKR6BiGmH39;b6zR64TtP2h.K53Thqzzjya;b6zR64TtP2h.XBuwUD1utmH;b6zR64TtP2h.K53Thqzzjya;b6zR64TtP2h.XBuwUD1utmH;AOtdUEiUjRX.J83ylYGKhbA;AOtdUEiUjRX.YFztQ2vR71N;AOtdUEiUjRX.pslMIlKFXBh;AOtdUEiUjRX.HUIWuBTBq08;AOtdUEiUjRX.yHSAPCLxecr;AOtdUEiUjRX.Pch5POkRK8D;AOtdUEiUjRX.UTolIBbDJGH;AOtdUEiUjRX.cJJJCGGLTOi;AOtdUEiUjRX.V0L9n6BBxKp;AOtdUEiUjRX.VDDnYYh4gAK;AOtdUEiUjRX.XpvgbSHy43w;AOtdUEiUjRX.qEaRHNTa7mi;AOtdUEiUjRX.cSY68ZH4wZg;AOtdUEiUjRX.Z9N77nA1ZwN;AOtdUEiUjRX.F1vIyc2K8oq;AOtdUEiUjRX.SKR6BiGmH39;AOtdUEiUjRX.K53Thqzzjya;AOtdUEiUjRX.XBuwUD1utmH;AOtdUEiUjRX.K53Thqzzjya;AOtdUEiUjRX.XBuwUD1utmH;hMSln8QfLot.J83ylYGKhbA;hMSln8QfLot.YFztQ2vR71N;hMSln8QfLot.pslMIlKFXBh;hMSln8QfLot.HUIWuBTBq08;hMSln8QfLot.yHSAPCLxecr;hMSln8QfLot.Pch5POkRK8D;hMSln8QfLot.UTolIBbDJGH;hMSln8QfLot.cJJJCGGLTOi;hMSln8QfLot.V0L9n6BBxKp;hMSln8QfLot.VDDnYYh4gAK;hMSln8QfLot.XpvgbSHy43w;hMSln8QfLot.qEaRHNTa7mi;hMSln8QfLot.cSY68ZH4wZg;hMSln8QfLot.Z9N77nA1ZwN;hMSln8QfLot.F1vIyc2K8oq;hMSln8QfLot.SKR6BiGmH39;hMSln8QfLot.K53Thqzzjya;hMSln8QfLot.XBuwUD1utmH;hMSln8QfLot.K53Thqzzjya;hMSln8QfLot.XBuwUD1utmH;oPW0J6GQQgI.J83ylYGKhbA;oPW0J6GQQgI.YFztQ2vR71N;oPW0J6GQQgI.pslMIlKFXBh;oPW0J6GQQgI.HUIWuBTBq08;oPW0J6GQQgI.yHSAPCLxecr;oPW0J6GQQgI.Pch5POkRK8D;oPW0J6GQQgI.UTolIBbDJGH;oPW0J6GQQgI.cJJJCGGLTOi;oPW0J6GQQgI.V0L9n6BBxKp;oPW0J6GQQgI.VDDnYYh4gAK;oPW0J6GQQgI.XpvgbSHy43w;oPW0J6GQQgI.qEaRHNTa7mi;oPW0J6GQQgI.cSY68ZH4wZg;oPW0J6GQQgI.Z9N77nA1ZwN;oPW0J6GQQgI.F1vIyc2K8oq;oPW0J6GQQgI.SKR6BiGmH39;oPW0J6GQQgI.K53Thqzzjya;oPW0J6GQQgI.XBuwUD1utmH;oPW0J6GQQgI.K53Thqzzjya;oPW0J6GQQgI.XBuwUD1utmH;rYll3qu2fjg.J83ylYGKhbA;rYll3qu2fjg.YFztQ2vR71N;rYll3qu2fjg.pslMIlKFXBh;rYll3qu2fjg.HUIWuBTBq08;rYll3qu2fjg.yHSAPCLxecr;rYll3qu2fjg.Pch5POkRK8D;rYll3qu2fjg.UTolIBbDJGH;rYll3qu2fjg.cJJJCGGLTOi;rYll3qu2fjg.V0L9n6BBxKp;rYll3qu2fjg.VDDnYYh4gAK;rYll3qu2fjg.XpvgbSHy43w;rYll3qu2fjg.qEaRHNTa7mi;rYll3qu2fjg.cSY68ZH4wZg;rYll3qu2fjg.Z9N77nA1ZwN;rYll3qu2fjg.F1vIyc2K8oq;rYll3qu2fjg.SKR6BiGmH39;rYll3qu2fjg.K53Thqzzjya;rYll3qu2fjg.XBuwUD1utmH;rYll3qu2fjg.K53Thqzzjya;rYll3qu2fjg.XBuwUD1utmH;GlQlTqjPdVe.J83ylYGKhbA;GlQlTqjPdVe.YFztQ2vR71N;GlQlTqjPdVe.pslMIlKFXBh;GlQlTqjPdVe.HUIWuBTBq08;GlQlTqjPdVe.yHSAPCLxecr;GlQlTqjPdVe.Pch5POkRK8D;GlQlTqjPdVe.UTolIBbDJGH;GlQlTqjPdVe.cJJJCGGLTOi;GlQlTqjPdVe.V0L9n6BBxKp;GlQlTqjPdVe.VDDnYYh4gAK;GlQlTqjPdVe.XpvgbSHy43w;GlQlTqjPdVe.qEaRHNTa7mi;GlQlTqjPdVe.cSY68ZH4wZg;GlQlTqjPdVe.Z9N77nA1ZwN;GlQlTqjPdVe.F1vIyc2K8oq;GlQlTqjPdVe.SKR6BiGmH39;GlQlTqjPdVe.K53Thqzzjya;GlQlTqjPdVe.XBuwUD1utmH;GlQlTqjPdVe.K53Thqzzjya;GlQlTqjPdVe.XBuwUD1utmH;GlQlTqjPdVe.J83ylYGKhbA;GlQlTqjPdVe.YFztQ2vR71N;GlQlTqjPdVe.pslMIlKFXBh;GlQlTqjPdVe.HUIWuBTBq08;GlQlTqjPdVe.yHSAPCLxecr;GlQlTqjPdVe.Pch5POkRK8D;GlQlTqjPdVe.UTolIBbDJGH;GlQlTqjPdVe.cJJJCGGLTOi;GlQlTqjPdVe.V0L9n6BBxKp;GlQlTqjPdVe.VDDnYYh4gAK;GlQlTqjPdVe.XpvgbSHy43w;GlQlTqjPdVe.qEaRHNTa7mi;GlQlTqjPdVe.cSY68ZH4wZg;GlQlTqjPdVe.Z9N77nA1ZwN;GlQlTqjPdVe.F1vIyc2K8oq;GlQlTqjPdVe.SKR6BiGmH39;GlQlTqjPdVe.K53Thqzzjya;GlQlTqjPdVe.XBuwUD1utmH;GlQlTqjPdVe.K53Thqzzjya;GlQlTqjPdVe.XBuwUD1utmH;QkBXX7u6gFp.J83ylYGKhbA;QkBXX7u6gFp.YFztQ2vR71N;QkBXX7u6gFp.pslMIlKFXBh;QkBXX7u6gFp.HUIWuBTBq08;QkBXX7u6gFp.yHSAPCLxecr;QkBXX7u6gFp.Pch5POkRK8D;QkBXX7u6gFp.UTolIBbDJGH;QkBXX7u6gFp.cJJJCGGLTOi;QkBXX7u6gFp.V0L9n6BBxKp;QkBXX7u6gFp.VDDnYYh4gAK;QkBXX7u6gFp.XpvgbSHy43w;QkBXX7u6gFp.qEaRHNTa7mi;QkBXX7u6gFp.cSY68ZH4wZg;QkBXX7u6gFp.Z9N77nA1ZwN;QkBXX7u6gFp.F1vIyc2K8oq;QkBXX7u6gFp.SKR6BiGmH39;QkBXX7u6gFp.K53Thqzzjya;QkBXX7u6gFp.XBuwUD1utmH;QkBXX7u6gFp.K53Thqzzjya;QkBXX7u6gFp.XBuwUD1utmH;QyQ7vy2TcJr.J83ylYGKhbA;QyQ7vy2TcJr.YFztQ2vR71N;QyQ7vy2TcJr.pslMIlKFXBh;QyQ7vy2TcJr.HUIWuBTBq08;QyQ7vy2TcJr.yHSAPCLxecr;QyQ7vy2TcJr.Pch5POkRK8D;QyQ7vy2TcJr.UTolIBbDJGH;QyQ7vy2TcJr.cJJJCGGLTOi;QyQ7vy2TcJr.V0L9n6BBxKp;QyQ7vy2TcJr.VDDnYYh4gAK;QyQ7vy2TcJr.XpvgbSHy43w;QyQ7vy2TcJr.qEaRHNTa7mi;QyQ7vy2TcJr.cSY68ZH4wZg;QyQ7vy2TcJr.Z9N77nA1ZwN;QyQ7vy2TcJr.F1vIyc2K8oq;QyQ7vy2TcJr.SKR6BiGmH39;QyQ7vy2TcJr.K53Thqzzjya;QyQ7vy2TcJr.XBuwUD1utmH;QyQ7vy2TcJr.K53Thqzzjya;QyQ7vy2TcJr.XBuwUD1utmH;&dimension=ou:OU_GROUP-" + $scope.orgId + "&filter=pe:" + $scope.periodId + "&displayProperty=NAME", {
+                    format: "json"
+                }), // service more than 25 res9
+                $.getJSON("../../analytics.json?dimension=dx:uu4pB0DpAye.J83ylYGKhbA;uu4pB0DpAye.YFztQ2vR71N;uu4pB0DpAye.pslMIlKFXBh;uu4pB0DpAye.HUIWuBTBq08;uu4pB0DpAye.yHSAPCLxecr;uu4pB0DpAye.Pch5POkRK8D;uu4pB0DpAye.UTolIBbDJGH;uu4pB0DpAye.cJJJCGGLTOi;uu4pB0DpAye.V0L9n6BBxKp;uu4pB0DpAye.VDDnYYh4gAK;uu4pB0DpAye.XpvgbSHy43w;uu4pB0DpAye.qEaRHNTa7mi;uu4pB0DpAye.cSY68ZH4wZg;uu4pB0DpAye.Z9N77nA1ZwN;uu4pB0DpAye.F1vIyc2K8oq;uu4pB0DpAye.SKR6BiGmH39;uu4pB0DpAye.K53Thqzzjya;uu4pB0DpAye.XBuwUD1utmH;uu4pB0DpAye.K53Thqzzjya;uu4pB0DpAye.XBuwUD1utmH;Bb34fGca42C.J83ylYGKhbA;Bb34fGca42C.YFztQ2vR71N;Bb34fGca42C.pslMIlKFXBh;Bb34fGca42C.HUIWuBTBq08;Bb34fGca42C.yHSAPCLxecr;Bb34fGca42C.Pch5POkRK8D;Bb34fGca42C.UTolIBbDJGH;Bb34fGca42C.cJJJCGGLTOi;Bb34fGca42C.V0L9n6BBxKp;Bb34fGca42C.VDDnYYh4gAK;Bb34fGca42C.XpvgbSHy43w;Bb34fGca42C.qEaRHNTa7mi;Bb34fGca42C.cSY68ZH4wZg;Bb34fGca42C.Z9N77nA1ZwN;Bb34fGca42C.F1vIyc2K8oq;Bb34fGca42C.SKR6BiGmH39;Bb34fGca42C.K53Thqzzjya;Bb34fGca42C.XBuwUD1utmH;Bb34fGca42C.K53Thqzzjya;Bb34fGca42C.XBuwUD1utmH;HboMvLIcsU1.J83ylYGKhbA;HboMvLIcsU1.YFztQ2vR71N;HboMvLIcsU1.pslMIlKFXBh;HboMvLIcsU1.HUIWuBTBq08;HboMvLIcsU1.yHSAPCLxecr;HboMvLIcsU1.Pch5POkRK8D;HboMvLIcsU1.UTolIBbDJGH;HboMvLIcsU1.cJJJCGGLTOi;HboMvLIcsU1.V0L9n6BBxKp;HboMvLIcsU1.VDDnYYh4gAK;HboMvLIcsU1.XpvgbSHy43w;HboMvLIcsU1.qEaRHNTa7mi;HboMvLIcsU1.cSY68ZH4wZg;HboMvLIcsU1.Z9N77nA1ZwN;HboMvLIcsU1.F1vIyc2K8oq;HboMvLIcsU1.SKR6BiGmH39;HboMvLIcsU1.K53Thqzzjya;HboMvLIcsU1.XBuwUD1utmH;HboMvLIcsU1.K53Thqzzjya;HboMvLIcsU1.XBuwUD1utmH;gYCNpm9shdA.J83ylYGKhbA;gYCNpm9shdA.YFztQ2vR71N;gYCNpm9shdA.pslMIlKFXBh;gYCNpm9shdA.HUIWuBTBq08;gYCNpm9shdA.yHSAPCLxecr;gYCNpm9shdA.Pch5POkRK8D;gYCNpm9shdA.UTolIBbDJGH;gYCNpm9shdA.cJJJCGGLTOi;gYCNpm9shdA.V0L9n6BBxKp;gYCNpm9shdA.VDDnYYh4gAK;gYCNpm9shdA.XpvgbSHy43w;gYCNpm9shdA.qEaRHNTa7mi;gYCNpm9shdA.cSY68ZH4wZg;gYCNpm9shdA.Z9N77nA1ZwN;gYCNpm9shdA.F1vIyc2K8oq;gYCNpm9shdA.SKR6BiGmH39;gYCNpm9shdA.K53Thqzzjya;gYCNpm9shdA.XBuwUD1utmH;gYCNpm9shdA.K53Thqzzjya;gYCNpm9shdA.XBuwUD1utmH;DvOgeUKPF0u.J83ylYGKhbA;DvOgeUKPF0u.YFztQ2vR71N;DvOgeUKPF0u.pslMIlKFXBh;DvOgeUKPF0u.HUIWuBTBq08;DvOgeUKPF0u.yHSAPCLxecr;DvOgeUKPF0u.Pch5POkRK8D;DvOgeUKPF0u.UTolIBbDJGH;DvOgeUKPF0u.cJJJCGGLTOi;DvOgeUKPF0u.V0L9n6BBxKp;DvOgeUKPF0u.VDDnYYh4gAK;DvOgeUKPF0u.XpvgbSHy43w;DvOgeUKPF0u.qEaRHNTa7mi;DvOgeUKPF0u.cSY68ZH4wZg;DvOgeUKPF0u.Z9N77nA1ZwN;DvOgeUKPF0u.F1vIyc2K8oq;DvOgeUKPF0u.SKR6BiGmH39;DvOgeUKPF0u.K53Thqzzjya;DvOgeUKPF0u.XBuwUD1utmH;DvOgeUKPF0u.K53Thqzzjya;DvOgeUKPF0u.XBuwUD1utmH;i2mZ5eXEa6G.J83ylYGKhbA;i2mZ5eXEa6G.YFztQ2vR71N;i2mZ5eXEa6G.pslMIlKFXBh;i2mZ5eXEa6G.HUIWuBTBq08;i2mZ5eXEa6G.yHSAPCLxecr;i2mZ5eXEa6G.Pch5POkRK8D;i2mZ5eXEa6G.UTolIBbDJGH;i2mZ5eXEa6G.cJJJCGGLTOi;i2mZ5eXEa6G.V0L9n6BBxKp;i2mZ5eXEa6G.VDDnYYh4gAK;i2mZ5eXEa6G.XpvgbSHy43w;i2mZ5eXEa6G.qEaRHNTa7mi;i2mZ5eXEa6G.cSY68ZH4wZg;i2mZ5eXEa6G.Z9N77nA1ZwN;i2mZ5eXEa6G.F1vIyc2K8oq;i2mZ5eXEa6G.SKR6BiGmH39;i2mZ5eXEa6G.K53Thqzzjya;i2mZ5eXEa6G.XBuwUD1utmH;i2mZ5eXEa6G.K53Thqzzjya;i2mZ5eXEa6G.XBuwUD1utmH;F1nIcbsEnZW.J83ylYGKhbA;F1nIcbsEnZW.YFztQ2vR71N;F1nIcbsEnZW.pslMIlKFXBh;F1nIcbsEnZW.HUIWuBTBq08;F1nIcbsEnZW.yHSAPCLxecr;F1nIcbsEnZW.Pch5POkRK8D;F1nIcbsEnZW.UTolIBbDJGH;F1nIcbsEnZW.cJJJCGGLTOi;F1nIcbsEnZW.V0L9n6BBxKp;F1nIcbsEnZW.VDDnYYh4gAK;F1nIcbsEnZW.XpvgbSHy43w;F1nIcbsEnZW.qEaRHNTa7mi;F1nIcbsEnZW.cSY68ZH4wZg;F1nIcbsEnZW.Z9N77nA1ZwN;F1nIcbsEnZW.F1vIyc2K8oq;F1nIcbsEnZW.SKR6BiGmH39;F1nIcbsEnZW.K53Thqzzjya;F1nIcbsEnZW.XBuwUD1utmH;F1nIcbsEnZW.K53Thqzzjya;F1nIcbsEnZW.XBuwUD1utmH;j3VQdJsKFXc.J83ylYGKhbA;j3VQdJsKFXc.YFztQ2vR71N;j3VQdJsKFXc.pslMIlKFXBh;j3VQdJsKFXc.HUIWuBTBq08;j3VQdJsKFXc.yHSAPCLxecr;j3VQdJsKFXc.Pch5POkRK8D;j3VQdJsKFXc.UTolIBbDJGH;j3VQdJsKFXc.cJJJCGGLTOi;j3VQdJsKFXc.V0L9n6BBxKp;j3VQdJsKFXc.VDDnYYh4gAK;j3VQdJsKFXc.XpvgbSHy43w;j3VQdJsKFXc.qEaRHNTa7mi;j3VQdJsKFXc.cSY68ZH4wZg;j3VQdJsKFXc.Z9N77nA1ZwN;j3VQdJsKFXc.F1vIyc2K8oq;j3VQdJsKFXc.SKR6BiGmH39;j3VQdJsKFXc.K53Thqzzjya;j3VQdJsKFXc.XBuwUD1utmH;j3VQdJsKFXc.K53Thqzzjya;j3VQdJsKFXc.XBuwUD1utmH;WKmjcdDsVw6.J83ylYGKhbA;WKmjcdDsVw6.YFztQ2vR71N;WKmjcdDsVw6.pslMIlKFXBh;WKmjcdDsVw6.HUIWuBTBq08;WKmjcdDsVw6.yHSAPCLxecr;WKmjcdDsVw6.Pch5POkRK8D;WKmjcdDsVw6.UTolIBbDJGH;WKmjcdDsVw6.cJJJCGGLTOi;WKmjcdDsVw6.V0L9n6BBxKp;WKmjcdDsVw6.VDDnYYh4gAK;WKmjcdDsVw6.XpvgbSHy43w;WKmjcdDsVw6.qEaRHNTa7mi;WKmjcdDsVw6.cSY68ZH4wZg;WKmjcdDsVw6.Z9N77nA1ZwN;WKmjcdDsVw6.F1vIyc2K8oq;WKmjcdDsVw6.SKR6BiGmH39;WKmjcdDsVw6.K53Thqzzjya;WKmjcdDsVw6.XBuwUD1utmH;WKmjcdDsVw6.K53Thqzzjya;WKmjcdDsVw6.XBuwUD1utmH;ak5XoxnZ5Dw.J83ylYGKhbA;ak5XoxnZ5Dw.YFztQ2vR71N;ak5XoxnZ5Dw.pslMIlKFXBh;ak5XoxnZ5Dw.HUIWuBTBq08;ak5XoxnZ5Dw.yHSAPCLxecr;ak5XoxnZ5Dw.Pch5POkRK8D;ak5XoxnZ5Dw.UTolIBbDJGH;ak5XoxnZ5Dw.cJJJCGGLTOi;ak5XoxnZ5Dw.V0L9n6BBxKp;ak5XoxnZ5Dw.VDDnYYh4gAK;ak5XoxnZ5Dw.XpvgbSHy43w;ak5XoxnZ5Dw.qEaRHNTa7mi;ak5XoxnZ5Dw.cSY68ZH4wZg;ak5XoxnZ5Dw.Z9N77nA1ZwN;ak5XoxnZ5Dw.F1vIyc2K8oq;ak5XoxnZ5Dw.SKR6BiGmH39;ak5XoxnZ5Dw.K53Thqzzjya;ak5XoxnZ5Dw.XBuwUD1utmH;ak5XoxnZ5Dw.K53Thqzzjya;ak5XoxnZ5Dw.XBuwUD1utmH;eSWNNG2mOTV.J83ylYGKhbA;eSWNNG2mOTV.YFztQ2vR71N;eSWNNG2mOTV.pslMIlKFXBh;eSWNNG2mOTV.HUIWuBTBq08;eSWNNG2mOTV.yHSAPCLxecr;eSWNNG2mOTV.Pch5POkRK8D;eSWNNG2mOTV.UTolIBbDJGH;eSWNNG2mOTV.cJJJCGGLTOi;eSWNNG2mOTV.V0L9n6BBxKp;eSWNNG2mOTV.VDDnYYh4gAK;eSWNNG2mOTV.XpvgbSHy43w;eSWNNG2mOTV.qEaRHNTa7mi;eSWNNG2mOTV.cSY68ZH4wZg;eSWNNG2mOTV.Z9N77nA1ZwN;eSWNNG2mOTV.F1vIyc2K8oq;eSWNNG2mOTV.SKR6BiGmH39;eSWNNG2mOTV.K53Thqzzjya;eSWNNG2mOTV.XBuwUD1utmH;eSWNNG2mOTV.K53Thqzzjya;eSWNNG2mOTV.XBuwUD1utmH;Jj1vd5cLzwt.J83ylYGKhbA;Jj1vd5cLzwt.YFztQ2vR71N;Jj1vd5cLzwt.pslMIlKFXBh;Jj1vd5cLzwt.HUIWuBTBq08;Jj1vd5cLzwt.yHSAPCLxecr;Jj1vd5cLzwt.Pch5POkRK8D;Jj1vd5cLzwt.UTolIBbDJGH;Jj1vd5cLzwt.cJJJCGGLTOi;Jj1vd5cLzwt.V0L9n6BBxKp;Jj1vd5cLzwt.VDDnYYh4gAK;Jj1vd5cLzwt.XpvgbSHy43w;Jj1vd5cLzwt.qEaRHNTa7mi;Jj1vd5cLzwt.cSY68ZH4wZg;Jj1vd5cLzwt.Z9N77nA1ZwN;Jj1vd5cLzwt.F1vIyc2K8oq;Jj1vd5cLzwt.SKR6BiGmH39;Jj1vd5cLzwt.K53Thqzzjya;Jj1vd5cLzwt.XBuwUD1utmH;Jj1vd5cLzwt.K53Thqzzjya;Jj1vd5cLzwt.XBuwUD1utmH;IuAa73uen0T.J83ylYGKhbA;IuAa73uen0T.YFztQ2vR71N;IuAa73uen0T.pslMIlKFXBh;IuAa73uen0T.HUIWuBTBq08;IuAa73uen0T.yHSAPCLxecr;IuAa73uen0T.Pch5POkRK8D;IuAa73uen0T.UTolIBbDJGH;IuAa73uen0T.cJJJCGGLTOi;IuAa73uen0T.V0L9n6BBxKp;IuAa73uen0T.VDDnYYh4gAK;IuAa73uen0T.XpvgbSHy43w;IuAa73uen0T.qEaRHNTa7mi;IuAa73uen0T.cSY68ZH4wZg;IuAa73uen0T.Z9N77nA1ZwN;IuAa73uen0T.F1vIyc2K8oq;IuAa73uen0T.SKR6BiGmH39;IuAa73uen0T.K53Thqzzjya;IuAa73uen0T.XBuwUD1utmH;IuAa73uen0T.K53Thqzzjya;IuAa73uen0T.XBuwUD1utmH;kmU7UesJ3VX.J83ylYGKhbA;kmU7UesJ3VX.YFztQ2vR71N;kmU7UesJ3VX.pslMIlKFXBh;kmU7UesJ3VX.HUIWuBTBq08;kmU7UesJ3VX.yHSAPCLxecr;kmU7UesJ3VX.Pch5POkRK8D;kmU7UesJ3VX.UTolIBbDJGH;kmU7UesJ3VX.cJJJCGGLTOi;kmU7UesJ3VX.V0L9n6BBxKp;kmU7UesJ3VX.VDDnYYh4gAK;kmU7UesJ3VX.XpvgbSHy43w;kmU7UesJ3VX.qEaRHNTa7mi;kmU7UesJ3VX.cSY68ZH4wZg;kmU7UesJ3VX.Z9N77nA1ZwN;kmU7UesJ3VX.F1vIyc2K8oq;kmU7UesJ3VX.SKR6BiGmH39;kmU7UesJ3VX.K53Thqzzjya;kmU7UesJ3VX.XBuwUD1utmH;kmU7UesJ3VX.K53Thqzzjya;kmU7UesJ3VX.XBuwUD1utmH;&dimension=ou:OU_GROUP-" + $scope.orgId + "&filter=pe:" + $scope.periodId + "&displayProperty=NAME", {
+                    format: "json"
+                }), // service more than 25 res10
+                $.getJSON("../../analytics.json?dimension=dx:h49vXr1IFHv.J83ylYGKhbA;h49vXr1IFHv.YFztQ2vR71N;h49vXr1IFHv.pslMIlKFXBh;h49vXr1IFHv.HUIWuBTBq08;h49vXr1IFHv.yHSAPCLxecr;h49vXr1IFHv.Pch5POkRK8D;h49vXr1IFHv.UTolIBbDJGH;h49vXr1IFHv.cJJJCGGLTOi;h49vXr1IFHv.V0L9n6BBxKp;h49vXr1IFHv.VDDnYYh4gAK;h49vXr1IFHv.XpvgbSHy43w;h49vXr1IFHv.qEaRHNTa7mi;h49vXr1IFHv.cSY68ZH4wZg;h49vXr1IFHv.Z9N77nA1ZwN;h49vXr1IFHv.F1vIyc2K8oq;h49vXr1IFHv.SKR6BiGmH39;h49vXr1IFHv.K53Thqzzjya;h49vXr1IFHv.XBuwUD1utmH;h49vXr1IFHv.K53Thqzzjya;h49vXr1IFHv.XBuwUD1utmH;j6y7jHb2igZ.J83ylYGKhbA;j6y7jHb2igZ.YFztQ2vR71N;j6y7jHb2igZ.pslMIlKFXBh;j6y7jHb2igZ.HUIWuBTBq08;j6y7jHb2igZ.yHSAPCLxecr;j6y7jHb2igZ.Pch5POkRK8D;j6y7jHb2igZ.UTolIBbDJGH;j6y7jHb2igZ.cJJJCGGLTOi;j6y7jHb2igZ.V0L9n6BBxKp;j6y7jHb2igZ.VDDnYYh4gAK;j6y7jHb2igZ.XpvgbSHy43w;j6y7jHb2igZ.qEaRHNTa7mi;j6y7jHb2igZ.cSY68ZH4wZg;j6y7jHb2igZ.Z9N77nA1ZwN;j6y7jHb2igZ.F1vIyc2K8oq;j6y7jHb2igZ.SKR6BiGmH39;j6y7jHb2igZ.K53Thqzzjya;j6y7jHb2igZ.XBuwUD1utmH;j6y7jHb2igZ.K53Thqzzjya;j6y7jHb2igZ.XBuwUD1utmH;P6LcmRcBDdW.J83ylYGKhbA;P6LcmRcBDdW.YFztQ2vR71N;P6LcmRcBDdW.pslMIlKFXBh;P6LcmRcBDdW.HUIWuBTBq08;P6LcmRcBDdW.yHSAPCLxecr;P6LcmRcBDdW.Pch5POkRK8D;P6LcmRcBDdW.UTolIBbDJGH;P6LcmRcBDdW.cJJJCGGLTOi;P6LcmRcBDdW.V0L9n6BBxKp;P6LcmRcBDdW.VDDnYYh4gAK;P6LcmRcBDdW.XpvgbSHy43w;P6LcmRcBDdW.qEaRHNTa7mi;P6LcmRcBDdW.cSY68ZH4wZg;P6LcmRcBDdW.Z9N77nA1ZwN;P6LcmRcBDdW.F1vIyc2K8oq;P6LcmRcBDdW.SKR6BiGmH39;P6LcmRcBDdW.K53Thqzzjya;P6LcmRcBDdW.XBuwUD1utmH;P6LcmRcBDdW.K53Thqzzjya;P6LcmRcBDdW.XBuwUD1utmH;iX7UNx5UbI7.J83ylYGKhbA;iX7UNx5UbI7.YFztQ2vR71N;iX7UNx5UbI7.pslMIlKFXBh;iX7UNx5UbI7.HUIWuBTBq08;iX7UNx5UbI7.yHSAPCLxecr;iX7UNx5UbI7.Pch5POkRK8D;iX7UNx5UbI7.UTolIBbDJGH;iX7UNx5UbI7.cJJJCGGLTOi;iX7UNx5UbI7.V0L9n6BBxKp;iX7UNx5UbI7.VDDnYYh4gAK;iX7UNx5UbI7.XpvgbSHy43w;iX7UNx5UbI7.qEaRHNTa7mi;iX7UNx5UbI7.cSY68ZH4wZg;iX7UNx5UbI7.Z9N77nA1ZwN;iX7UNx5UbI7.F1vIyc2K8oq;iX7UNx5UbI7.SKR6BiGmH39;iX7UNx5UbI7.K53Thqzzjya;iX7UNx5UbI7.XBuwUD1utmH;iX7UNx5UbI7.K53Thqzzjya;iX7UNx5UbI7.XBuwUD1utmH;xXU012ATYAs.J83ylYGKhbA;xXU012ATYAs.YFztQ2vR71N;xXU012ATYAs.pslMIlKFXBh;xXU012ATYAs.HUIWuBTBq08;xXU012ATYAs.yHSAPCLxecr;xXU012ATYAs.Pch5POkRK8D;xXU012ATYAs.UTolIBbDJGH;xXU012ATYAs.cJJJCGGLTOi;xXU012ATYAs.V0L9n6BBxKp;xXU012ATYAs.VDDnYYh4gAK;xXU012ATYAs.XpvgbSHy43w;xXU012ATYAs.qEaRHNTa7mi;xXU012ATYAs.cSY68ZH4wZg;xXU012ATYAs.Z9N77nA1ZwN;xXU012ATYAs.F1vIyc2K8oq;xXU012ATYAs.SKR6BiGmH39;xXU012ATYAs.K53Thqzzjya;xXU012ATYAs.XBuwUD1utmH;xXU012ATYAs.K53Thqzzjya;xXU012ATYAs.XBuwUD1utmH;WvhsnkOw5Rl.J83ylYGKhbA;WvhsnkOw5Rl.YFztQ2vR71N;WvhsnkOw5Rl.pslMIlKFXBh;WvhsnkOw5Rl.HUIWuBTBq08;WvhsnkOw5Rl.yHSAPCLxecr;WvhsnkOw5Rl.Pch5POkRK8D;WvhsnkOw5Rl.UTolIBbDJGH;WvhsnkOw5Rl.cJJJCGGLTOi;WvhsnkOw5Rl.V0L9n6BBxKp;WvhsnkOw5Rl.VDDnYYh4gAK;WvhsnkOw5Rl.XpvgbSHy43w;WvhsnkOw5Rl.qEaRHNTa7mi;WvhsnkOw5Rl.cSY68ZH4wZg;WvhsnkOw5Rl.Z9N77nA1ZwN;WvhsnkOw5Rl.F1vIyc2K8oq;WvhsnkOw5Rl.SKR6BiGmH39;WvhsnkOw5Rl.K53Thqzzjya;WvhsnkOw5Rl.XBuwUD1utmH;WvhsnkOw5Rl.K53Thqzzjya;WvhsnkOw5Rl.XBuwUD1utmH;&dimension=ou:OU_GROUP-" + $scope.orgId + "&filter=pe:" + $scope.periodId + "&displayProperty=NAME", {
+                    format: "json"
                 })
-            ).then(function (res4, res5, res6) {
+            ).then(function (res4, res5, res6,res7, res8,res9,res10) {
                 //count1++;
-                $scope.finalvalue(res4, res5, res6, $scope.periodId, $scope.code);
+                $scope.finalvalue(res4, res5, res6, res7,res8,res9,res10,$scope.periodId, $scope.code);
             })
 
             //  }
@@ -84,7 +118,7 @@ ExportCSVApp.controller('reportController',
         // }
 
 
-        $scope.finalvalue = function (res4, res5, res6, periodIds, codes) {
+        $scope.finalvalue = function (res4, res5, res6,res7, res8, res9,res10,periodIds, codes) {
 
 
             $scope.pe = periodIds;
@@ -958,23 +992,1014 @@ var smvalue246= datavalue(res6[0],'p5YojCfJtwR.XBuwUD1utmH');
 var ressmvalue7 = smvalue227 +smvalue228+smvalue229	+smvalue230	+smvalue231	+smvalue232	+smvalue233	+smvalue234	+smvalue235	+smvalue236	+smvalue237	+smvalue238	+smvalue239	+
 smvalue240	+smvalue241	+smvalue242	+smvalue243	+smvalue244	+smvalue245	+smvalue246;
 
+var smvalue247= datavalue(res7[0],'OgbsfavEeMo.J83ylYGKhbA');
+var smvalue248= datavalue(res7[0],'OgbsfavEeMo.YFztQ2vR71N');
+var smvalue249= datavalue(res7[0],'OgbsfavEeMo.pslMIlKFXBh');
+var smvalue250= datavalue(res7[0],'OgbsfavEeMo.HUIWuBTBq08');
+var smvalue251= datavalue(res7[0],'OgbsfavEeMo.yHSAPCLxecr');
+var smvalue252= datavalue(res7[0],'OgbsfavEeMo.Pch5POkRK8D');
+var smvalue253= datavalue(res7[0],'OgbsfavEeMo.UTolIBbDJGH');
+var smvalue254= datavalue(res7[0],'OgbsfavEeMo.cJJJCGGLTOi');
+var smvalue255= datavalue(res7[0],'OgbsfavEeMo.V0L9n6BBxKp');
+var smvalue256= datavalue(res7[0],'OgbsfavEeMo.VDDnYYh4gAK');
+var smvalue257= datavalue(res7[0],'OgbsfavEeMo.XpvgbSHy43w');
+var smvalue258= datavalue(res7[0],'OgbsfavEeMo.qEaRHNTa7mi');
+var smvalue259= datavalue(res7[0],'OgbsfavEeMo.cSY68ZH4wZg');
+var smvalue260= datavalue(res7[0],'OgbsfavEeMo.Z9N77nA1ZwN');
+var smvalue261= datavalue(res7[0],'OgbsfavEeMo.F1vIyc2K8oq');
+var smvalue262= datavalue(res7[0],'OgbsfavEeMo.SKR6BiGmH39');
+var smvalue263= datavalue(res7[0],'OgbsfavEeMo.K53Thqzzjya');
+var smvalue264= datavalue(res7[0],'OgbsfavEeMo.XBuwUD1utmH');
+var smvalue265= datavalue(res7[0],'OgbsfavEeMo.K53Thqzzjya');
+var smvalue266= datavalue(res7[0],'OgbsfavEeMo.XBuwUD1utmH');
+var smvalue267= datavalue(res7[0],'jQLyrvVI75w.J83ylYGKhbA');
+var smvalue268= datavalue(res7[0],'jQLyrvVI75w.YFztQ2vR71N');
+var smvalue269= datavalue(res7[0],'jQLyrvVI75w.pslMIlKFXBh');
+var smvalue270= datavalue(res7[0],'jQLyrvVI75w.HUIWuBTBq08');
+var smvalue271= datavalue(res7[0],'jQLyrvVI75w.yHSAPCLxecr');
+var smvalue272= datavalue(res7[0],'jQLyrvVI75w.Pch5POkRK8D');
+var smvalue273= datavalue(res7[0],'jQLyrvVI75w.UTolIBbDJGH');
+var smvalue274= datavalue(res7[0],'jQLyrvVI75w.cJJJCGGLTOi');
+var smvalue275= datavalue(res7[0],'jQLyrvVI75w.V0L9n6BBxKp');
+var smvalue276= datavalue(res7[0],'jQLyrvVI75w.VDDnYYh4gAK');
+var smvalue277= datavalue(res7[0],'jQLyrvVI75w.XpvgbSHy43w');
+var smvalue278= datavalue(res7[0],'jQLyrvVI75w.qEaRHNTa7mi');
+var smvalue279= datavalue(res7[0],'jQLyrvVI75w.cSY68ZH4wZg');
+var smvalue280= datavalue(res7[0],'jQLyrvVI75w.Z9N77nA1ZwN');
+var smvalue281= datavalue(res7[0],'jQLyrvVI75w.F1vIyc2K8oq');
+var smvalue282= datavalue(res7[0],'jQLyrvVI75w.SKR6BiGmH39');
+var smvalue283= datavalue(res7[0],'jQLyrvVI75w.K53Thqzzjya');
+var smvalue284= datavalue(res7[0],'jQLyrvVI75w.XBuwUD1utmH');
+var smvalue285= datavalue(res7[0],'jQLyrvVI75w.K53Thqzzjya');
+var smvalue286= datavalue(res7[0],'jQLyrvVI75w.XBuwUD1utmH');
+var smvalue287= datavalue(res7[0],'zRinuwShWjC.J83ylYGKhbA');
+var smvalue288= datavalue(res7[0],'zRinuwShWjC.YFztQ2vR71N');
+var smvalue289= datavalue(res7[0],'zRinuwShWjC.pslMIlKFXBh');
+var smvalue290= datavalue(res7[0],'zRinuwShWjC.HUIWuBTBq08');
+var smvalue291= datavalue(res7[0],'zRinuwShWjC.yHSAPCLxecr');
+var smvalue292= datavalue(res7[0],'zRinuwShWjC.Pch5POkRK8D');
+var smvalue293= datavalue(res7[0],'zRinuwShWjC.UTolIBbDJGH');
+var smvalue294= datavalue(res7[0],'zRinuwShWjC.cJJJCGGLTOi');
+var smvalue295= datavalue(res7[0],'zRinuwShWjC.V0L9n6BBxKp');
+var smvalue296= datavalue(res7[0],'zRinuwShWjC.VDDnYYh4gAK');
+var smvalue297= datavalue(res7[0],'zRinuwShWjC.XpvgbSHy43w');
+var smvalue298= datavalue(res7[0],'zRinuwShWjC.qEaRHNTa7mi');
+var smvalue299= datavalue(res7[0],'zRinuwShWjC.cSY68ZH4wZg');
+var smvalue300= datavalue(res7[0],'zRinuwShWjC.Z9N77nA1ZwN');
+var smvalue301= datavalue(res7[0],'zRinuwShWjC.F1vIyc2K8oq');
+var smvalue302= datavalue(res7[0],'zRinuwShWjC.SKR6BiGmH39');
+var smvalue303= datavalue(res7[0],'zRinuwShWjC.K53Thqzzjya');
+var smvalue304= datavalue(res7[0],'zRinuwShWjC.XBuwUD1utmH');
+var smvalue305= datavalue(res7[0],'zRinuwShWjC.K53Thqzzjya');
+var smvalue306= datavalue(res7[0],'zRinuwShWjC.XBuwUD1utmH');
+var smvalue307= datavalue(res7[0],'BHoiRswS9Ms.J83ylYGKhbA');
+var smvalue308= datavalue(res7[0],'BHoiRswS9Ms.YFztQ2vR71N');
+var smvalue309= datavalue(res7[0],'BHoiRswS9Ms.pslMIlKFXBh');
+var smvalue310= datavalue(res7[0],'BHoiRswS9Ms.HUIWuBTBq08');
+var smvalue311= datavalue(res7[0],'BHoiRswS9Ms.yHSAPCLxecr');
+var smvalue312= datavalue(res7[0],'BHoiRswS9Ms.Pch5POkRK8D');
+var smvalue313= datavalue(res7[0],'BHoiRswS9Ms.UTolIBbDJGH');
+var smvalue314= datavalue(res7[0],'BHoiRswS9Ms.cJJJCGGLTOi');
+var smvalue315= datavalue(res7[0],'BHoiRswS9Ms.V0L9n6BBxKp');
+var smvalue316= datavalue(res7[0],'BHoiRswS9Ms.VDDnYYh4gAK');
+var smvalue317= datavalue(res7[0],'BHoiRswS9Ms.XpvgbSHy43w');
+var smvalue318= datavalue(res7[0],'BHoiRswS9Ms.qEaRHNTa7mi');
+var smvalue319= datavalue(res7[0],'BHoiRswS9Ms.cSY68ZH4wZg');
+var smvalue320= datavalue(res7[0],'BHoiRswS9Ms.Z9N77nA1ZwN');
+var smvalue321= datavalue(res7[0],'BHoiRswS9Ms.F1vIyc2K8oq');
+var smvalue322= datavalue(res7[0],'BHoiRswS9Ms.SKR6BiGmH39');
+var smvalue323= datavalue(res7[0],'BHoiRswS9Ms.K53Thqzzjya');
+var smvalue324= datavalue(res7[0],'BHoiRswS9Ms.XBuwUD1utmH');
+var smvalue325= datavalue(res7[0],'BHoiRswS9Ms.K53Thqzzjya');
+var smvalue326= datavalue(res7[0],'BHoiRswS9Ms.XBuwUD1utmH');
+var smvalue327= datavalue(res7[0],'Qjg8srfIKaY.J83ylYGKhbA');
+var smvalue328= datavalue(res7[0],'Qjg8srfIKaY.YFztQ2vR71N');
+var smvalue329= datavalue(res7[0],'Qjg8srfIKaY.pslMIlKFXBh');
+var smvalue330= datavalue(res7[0],'Qjg8srfIKaY.HUIWuBTBq08');
+var smvalue331= datavalue(res7[0],'Qjg8srfIKaY.yHSAPCLxecr');
+var smvalue332= datavalue(res7[0],'Qjg8srfIKaY.Pch5POkRK8D');
+var smvalue333= datavalue(res7[0],'Qjg8srfIKaY.UTolIBbDJGH');
+var smvalue334= datavalue(res7[0],'Qjg8srfIKaY.cJJJCGGLTOi');
+var smvalue335= datavalue(res7[0],'Qjg8srfIKaY.V0L9n6BBxKp');
+var smvalue336= datavalue(res7[0],'Qjg8srfIKaY.VDDnYYh4gAK');
+var smvalue337= datavalue(res7[0],'Qjg8srfIKaY.XpvgbSHy43w');
+var smvalue338= datavalue(res7[0],'Qjg8srfIKaY.qEaRHNTa7mi');
+var smvalue339= datavalue(res7[0],'Qjg8srfIKaY.cSY68ZH4wZg');
+var smvalue340= datavalue(res7[0],'Qjg8srfIKaY.Z9N77nA1ZwN');
+var smvalue341= datavalue(res7[0],'Qjg8srfIKaY.F1vIyc2K8oq');
+var smvalue342= datavalue(res7[0],'Qjg8srfIKaY.SKR6BiGmH39');
+var smvalue343= datavalue(res7[0],'Qjg8srfIKaY.K53Thqzzjya');
+var smvalue344= datavalue(res7[0],'Qjg8srfIKaY.XBuwUD1utmH');
+var smvalue345= datavalue(res7[0],'Qjg8srfIKaY.K53Thqzzjya');
+var smvalue346= datavalue(res7[0],'Qjg8srfIKaY.XBuwUD1utmH');
+var smvalue347= datavalue(res7[0],'fzhus2HMb17.J83ylYGKhbA');
+var smvalue348= datavalue(res7[0],'fzhus2HMb17.YFztQ2vR71N');
+var smvalue349= datavalue(res7[0],'fzhus2HMb17.pslMIlKFXBh');
+var smvalue350= datavalue(res7[0],'fzhus2HMb17.HUIWuBTBq08');
+var smvalue351= datavalue(res7[0],'fzhus2HMb17.yHSAPCLxecr');
+var smvalue352= datavalue(res7[0],'fzhus2HMb17.Pch5POkRK8D');
+var smvalue353= datavalue(res7[0],'fzhus2HMb17.UTolIBbDJGH');
+var smvalue354= datavalue(res7[0],'fzhus2HMb17.cJJJCGGLTOi');
+var smvalue355= datavalue(res7[0],'fzhus2HMb17.V0L9n6BBxKp');
+var smvalue356= datavalue(res7[0],'fzhus2HMb17.VDDnYYh4gAK');
+var smvalue357= datavalue(res7[0],'fzhus2HMb17.XpvgbSHy43w');
+var smvalue358= datavalue(res7[0],'fzhus2HMb17.qEaRHNTa7mi');
+var smvalue359= datavalue(res7[0],'fzhus2HMb17.cSY68ZH4wZg');
+var smvalue360= datavalue(res7[0],'fzhus2HMb17.Z9N77nA1ZwN');
+var smvalue361= datavalue(res7[0],'fzhus2HMb17.F1vIyc2K8oq');
+var smvalue362= datavalue(res7[0],'fzhus2HMb17.SKR6BiGmH39');
+var smvalue363= datavalue(res7[0],'fzhus2HMb17.K53Thqzzjya');
+var smvalue364= datavalue(res7[0],'fzhus2HMb17.XBuwUD1utmH');
+var smvalue365= datavalue(res7[0],'fzhus2HMb17.K53Thqzzjya');
+var smvalue366= datavalue(res7[0],'fzhus2HMb17.XBuwUD1utmH');
+var smvalue367= datavalue(res7[0],'SDYyzMdkywv.J83ylYGKhbA');
+var smvalue368= datavalue(res7[0],'SDYyzMdkywv.YFztQ2vR71N');
+var smvalue369= datavalue(res7[0],'SDYyzMdkywv.pslMIlKFXBh');
+var smvalue370= datavalue(res7[0],'SDYyzMdkywv.HUIWuBTBq08');
+var smvalue371= datavalue(res7[0],'SDYyzMdkywv.yHSAPCLxecr');
+var smvalue372= datavalue(res7[0],'SDYyzMdkywv.Pch5POkRK8D');
+var smvalue373= datavalue(res7[0],'SDYyzMdkywv.UTolIBbDJGH');
+var smvalue374= datavalue(res7[0],'SDYyzMdkywv.cJJJCGGLTOi');
+var smvalue375= datavalue(res7[0],'SDYyzMdkywv.V0L9n6BBxKp');
+var smvalue376= datavalue(res7[0],'SDYyzMdkywv.VDDnYYh4gAK');
+var smvalue377= datavalue(res7[0],'SDYyzMdkywv.XpvgbSHy43w');
+var smvalue378= datavalue(res7[0],'SDYyzMdkywv.qEaRHNTa7mi');
+var smvalue379= datavalue(res7[0],'SDYyzMdkywv.cSY68ZH4wZg');
+var smvalue380= datavalue(res7[0],'SDYyzMdkywv.Z9N77nA1ZwN');
+var smvalue381= datavalue(res7[0],'SDYyzMdkywv.F1vIyc2K8oq');
+var smvalue382= datavalue(res7[0],'SDYyzMdkywv.SKR6BiGmH39');
+var smvalue383= datavalue(res7[0],'SDYyzMdkywv.K53Thqzzjya');
+var smvalue384= datavalue(res7[0],'SDYyzMdkywv.XBuwUD1utmH');
+var smvalue385= datavalue(res7[0],'SDYyzMdkywv.K53Thqzzjya');
+var smvalue386= datavalue(res7[0],'SDYyzMdkywv.XBuwUD1utmH');
+var smvalue387= datavalue(res7[0],'VwinA9WuHFn.J83ylYGKhbA');
+var smvalue388= datavalue(res7[0],'VwinA9WuHFn.YFztQ2vR71N');
+var smvalue389= datavalue(res7[0],'VwinA9WuHFn.pslMIlKFXBh');
+var smvalue390= datavalue(res7[0],'VwinA9WuHFn.HUIWuBTBq08');
+var smvalue391= datavalue(res7[0],'VwinA9WuHFn.yHSAPCLxecr');
+var smvalue392= datavalue(res7[0],'VwinA9WuHFn.Pch5POkRK8D');
+var smvalue393= datavalue(res7[0],'VwinA9WuHFn.UTolIBbDJGH');
+var smvalue394= datavalue(res7[0],'VwinA9WuHFn.cJJJCGGLTOi');
+var smvalue395= datavalue(res7[0],'VwinA9WuHFn.V0L9n6BBxKp');
+var smvalue396= datavalue(res7[0],'VwinA9WuHFn.VDDnYYh4gAK');
+var smvalue397= datavalue(res7[0],'VwinA9WuHFn.XpvgbSHy43w');
+var smvalue398= datavalue(res7[0],'VwinA9WuHFn.qEaRHNTa7mi');
+var smvalue399= datavalue(res7[0],'VwinA9WuHFn.cSY68ZH4wZg');
+var smvalue400= datavalue(res7[0],'VwinA9WuHFn.Z9N77nA1ZwN');
+var smvalue401= datavalue(res7[0],'VwinA9WuHFn.F1vIyc2K8oq');
+var smvalue402= datavalue(res7[0],'VwinA9WuHFn.SKR6BiGmH39');
+var smvalue403= datavalue(res7[0],'VwinA9WuHFn.K53Thqzzjya');
+var smvalue404= datavalue(res7[0],'VwinA9WuHFn.XBuwUD1utmH');
+var smvalue405= datavalue(res7[0],'VwinA9WuHFn.K53Thqzzjya');
+var smvalue406= datavalue(res7[0],'VwinA9WuHFn.XBuwUD1utmH');
+var smvalue407= datavalue(res7[0],'GBv3sGOHoDy.J83ylYGKhbA');
+var smvalue408= datavalue(res7[0],'GBv3sGOHoDy.YFztQ2vR71N');
+var smvalue409= datavalue(res7[0],'GBv3sGOHoDy.pslMIlKFXBh');
+var smvalue410= datavalue(res7[0],'GBv3sGOHoDy.HUIWuBTBq08');
+var smvalue411= datavalue(res7[0],'GBv3sGOHoDy.yHSAPCLxecr');
+var smvalue412= datavalue(res7[0],'GBv3sGOHoDy.Pch5POkRK8D');
+var smvalue413= datavalue(res7[0],'GBv3sGOHoDy.UTolIBbDJGH');
+var smvalue414= datavalue(res7[0],'GBv3sGOHoDy.cJJJCGGLTOi');
+var smvalue415= datavalue(res7[0],'GBv3sGOHoDy.V0L9n6BBxKp');
+var smvalue416= datavalue(res7[0],'GBv3sGOHoDy.VDDnYYh4gAK');
+var smvalue417= datavalue(res7[0],'GBv3sGOHoDy.XpvgbSHy43w');
+var smvalue418= datavalue(res7[0],'GBv3sGOHoDy.qEaRHNTa7mi');
+var smvalue419= datavalue(res7[0],'GBv3sGOHoDy.cSY68ZH4wZg');
+var smvalue420= datavalue(res7[0],'GBv3sGOHoDy.Z9N77nA1ZwN');
+var smvalue421= datavalue(res7[0],'GBv3sGOHoDy.F1vIyc2K8oq');
+var smvalue422= datavalue(res7[0],'GBv3sGOHoDy.SKR6BiGmH39');
+var smvalue423= datavalue(res7[0],'GBv3sGOHoDy.K53Thqzzjya');
+var smvalue424= datavalue(res7[0],'GBv3sGOHoDy.XBuwUD1utmH');
+var smvalue425= datavalue(res7[0],'GBv3sGOHoDy.K53Thqzzjya');
+var smvalue426= datavalue(res7[0],'GBv3sGOHoDy.XBuwUD1utmH');
 
+var ressmvalue8 = smvalue247+smvalue248	+smvalue249	+smvalue250	+smvalue251	+smvalue252	+smvalue253	+smvalue254	+smvalue255	+smvalue256	+smvalue257	+smvalue258	+smvalue259	+smvalue260	+smvalue261	+smvalue262	+smvalue263	+smvalue264	+smvalue265	+smvalue266	+smvalue267	+smvalue268	+smvalue269	+smvalue270	+smvalue271	+smvalue272	+smvalue273	+smvalue274	+smvalue275	+smvalue276	+smvalue277	+smvalue278	+smvalue279	+smvalue280	+smvalue281	+smvalue282	+smvalue283	+smvalue284	+smvalue285	+smvalue286	+smvalue287	+smvalue288	+smvalue289	+smvalue290	+smvalue291	+smvalue292	+smvalue293	+smvalue294	+smvalue295	+smvalue296	+smvalue297	+smvalue298	+smvalue299	+smvalue300	+smvalue301	+smvalue302	+smvalue303	+smvalue304	+smvalue305	+smvalue306	+smvalue307	+smvalue308	+smvalue309	+smvalue310	+smvalue311	+
+smvalue312	+smvalue313	+smvalue314	+smvalue315	+smvalue316	+smvalue317	+smvalue318	+smvalue319	+smvalue320	+smvalue321	+smvalue322	+smvalue323	+smvalue324	+smvalue325	+smvalue326	+smvalue327	+smvalue328	+smvalue329	+smvalue330	+smvalue331	+smvalue332	+smvalue333	+
+smvalue334	+smvalue335	+smvalue336	+smvalue337	+smvalue338	+smvalue339	+smvalue340	+smvalue341	+smvalue342	+smvalue343	+smvalue344	+smvalue345	+smvalue346	+smvalue347	+smvalue348	+smvalue349	+smvalue350	+smvalue351	+smvalue352	+smvalue353	+smvalue354	+smvalue355	+
+smvalue356	+smvalue357	+smvalue358	+smvalue359	+smvalue360	+smvalue361	+smvalue362	+smvalue363	+smvalue364	+smvalue365	+smvalue366	+smvalue367	+smvalue368	+smvalue369	+smvalue370	+smvalue371	+smvalue372	+smvalue373	+smvalue374	+smvalue375	+smvalue376	+smvalue377	+smvalue378	+smvalue379	+smvalue380	+smvalue381	+smvalue382	+smvalue383	+smvalue384	+smvalue385	+smvalue386	+smvalue387	+smvalue388	+smvalue389	+smvalue390	+smvalue391	+smvalue392	+smvalue393	+smvalue394	+smvalue395	+smvalue396	+smvalue397	+smvalue398	+smvalue399	+smvalue400	+smvalue401	+smvalue402	+smvalue403	+smvalue404	+smvalue405	+smvalue406	+smvalue407	+smvalue408	+smvalue409	+smvalue410	+
+smvalue411	+smvalue412	+smvalue413	+smvalue414	+smvalue415	+smvalue416	+smvalue417	+smvalue418	+smvalue419	+smvalue420	+smvalue421	+
+smvalue422	+smvalue423	+smvalue424	+smvalue425	+smvalue426 ;
+
+var smvalue427= datavalue(res7[0],'APYJLOf2T3m.J83ylYGKhbA');
+var smvalue428= datavalue(res7[0],'APYJLOf2T3m.YFztQ2vR71N');
+var smvalue429= datavalue(res7[0],'APYJLOf2T3m.pslMIlKFXBh');
+var smvalue430= datavalue(res7[0],'APYJLOf2T3m.HUIWuBTBq08');
+var smvalue431= datavalue(res7[0],'APYJLOf2T3m.yHSAPCLxecr');
+var smvalue432= datavalue(res7[0],'APYJLOf2T3m.Pch5POkRK8D');
+var smvalue433= datavalue(res7[0],'APYJLOf2T3m.UTolIBbDJGH');
+var smvalue434= datavalue(res7[0],'APYJLOf2T3m.cJJJCGGLTOi');
+var smvalue435= datavalue(res7[0],'APYJLOf2T3m.V0L9n6BBxKp');
+var smvalue436= datavalue(res7[0],'APYJLOf2T3m.VDDnYYh4gAK');
+var smvalue437= datavalue(res7[0],'APYJLOf2T3m.XpvgbSHy43w');
+var smvalue438= datavalue(res7[0],'APYJLOf2T3m.qEaRHNTa7mi');
+var smvalue439= datavalue(res7[0],'APYJLOf2T3m.cSY68ZH4wZg');
+var smvalue440= datavalue(res7[0],'APYJLOf2T3m.Z9N77nA1ZwN');
+var smvalue441= datavalue(res7[0],'APYJLOf2T3m.F1vIyc2K8oq');
+var smvalue442= datavalue(res7[0],'APYJLOf2T3m.SKR6BiGmH39');
+var smvalue443= datavalue(res7[0],'APYJLOf2T3m.K53Thqzzjya');
+var smvalue444= datavalue(res7[0],'APYJLOf2T3m.XBuwUD1utmH');
+var smvalue445= datavalue(res7[0],'APYJLOf2T3m.K53Thqzzjya');
+var smvalue446= datavalue(res7[0],'APYJLOf2T3m.XBuwUD1utmH');
+
+var ressmvalue9 = smvalue427+smvalue428	+smvalue429	+smvalue430	+smvalue431	+smvalue432	+smvalue433	+smvalue434	+smvalue435	+smvalue436	+smvalue437	+smvalue438	+smvalue439	+smvalue440	+smvalue441	+smvalue442	+smvalue443	+smvalue444	+smvalue445	+smvalue446;
+
+var smvalue447= datavalue(res8[0],'JOVT5Ik9hlO.J83ylYGKhbA');
+var smvalue448= datavalue(res8[0],'JOVT5Ik9hlO.YFztQ2vR71N');
+var smvalue449= datavalue(res8[0],'JOVT5Ik9hlO.pslMIlKFXBh');
+var smvalue450= datavalue(res8[0],'JOVT5Ik9hlO.HUIWuBTBq08');
+var smvalue451= datavalue(res8[0],'JOVT5Ik9hlO.yHSAPCLxecr');
+var smvalue452= datavalue(res8[0],'JOVT5Ik9hlO.Pch5POkRK8D');
+var smvalue453= datavalue(res8[0],'JOVT5Ik9hlO.UTolIBbDJGH');
+var smvalue454= datavalue(res8[0],'JOVT5Ik9hlO.cJJJCGGLTOi');
+var smvalue455= datavalue(res8[0],'JOVT5Ik9hlO.V0L9n6BBxKp');
+var smvalue456= datavalue(res8[0],'JOVT5Ik9hlO.VDDnYYh4gAK');
+var smvalue457= datavalue(res8[0],'JOVT5Ik9hlO.XpvgbSHy43w');
+var smvalue458= datavalue(res8[0],'JOVT5Ik9hlO.qEaRHNTa7mi');
+var smvalue459= datavalue(res8[0],'JOVT5Ik9hlO.cSY68ZH4wZg');
+var smvalue460= datavalue(res8[0],'JOVT5Ik9hlO.Z9N77nA1ZwN');
+var smvalue461= datavalue(res8[0],'JOVT5Ik9hlO.F1vIyc2K8oq');
+var smvalue462= datavalue(res8[0],'JOVT5Ik9hlO.SKR6BiGmH39');
+var smvalue463= datavalue(res8[0],'JOVT5Ik9hlO.K53Thqzzjya');
+var smvalue464= datavalue(res8[0],'JOVT5Ik9hlO.XBuwUD1utmH');
+var smvalue465= datavalue(res8[0],'JOVT5Ik9hlO.K53Thqzzjya');
+var smvalue466= datavalue(res8[0],'JOVT5Ik9hlO.XBuwUD1utmH');
+var smvalue467= datavalue(res8[0],'bLPpYw9uyMg.J83ylYGKhbA');
+var smvalue468= datavalue(res8[0],'bLPpYw9uyMg.YFztQ2vR71N');
+var smvalue469= datavalue(res8[0],'bLPpYw9uyMg.pslMIlKFXBh');
+var smvalue470= datavalue(res8[0],'bLPpYw9uyMg.HUIWuBTBq08');
+var smvalue471= datavalue(res8[0],'bLPpYw9uyMg.yHSAPCLxecr');
+var smvalue472= datavalue(res8[0],'bLPpYw9uyMg.Pch5POkRK8D');
+var smvalue473= datavalue(res8[0],'bLPpYw9uyMg.UTolIBbDJGH');
+var smvalue474= datavalue(res8[0],'bLPpYw9uyMg.cJJJCGGLTOi');
+var smvalue475= datavalue(res8[0],'bLPpYw9uyMg.V0L9n6BBxKp');
+var smvalue476= datavalue(res8[0],'bLPpYw9uyMg.VDDnYYh4gAK');
+var smvalue477= datavalue(res8[0],'bLPpYw9uyMg.XpvgbSHy43w');
+var smvalue478= datavalue(res8[0],'bLPpYw9uyMg.qEaRHNTa7mi');
+var smvalue479= datavalue(res8[0],'bLPpYw9uyMg.cSY68ZH4wZg');
+var smvalue480= datavalue(res8[0],'bLPpYw9uyMg.Z9N77nA1ZwN');
+var smvalue481= datavalue(res8[0],'bLPpYw9uyMg.F1vIyc2K8oq');
+var smvalue482= datavalue(res8[0],'bLPpYw9uyMg.SKR6BiGmH39');
+var smvalue483= datavalue(res8[0],'bLPpYw9uyMg.K53Thqzzjya');
+var smvalue484= datavalue(res8[0],'bLPpYw9uyMg.XBuwUD1utmH');
+var smvalue485= datavalue(res8[0],'bLPpYw9uyMg.K53Thqzzjya');
+var smvalue486= datavalue(res8[0],'bLPpYw9uyMg.XBuwUD1utmH');
+var smvalue487= datavalue(res8[0],'VHIrQfXq4jZ.J83ylYGKhbA');
+var smvalue488= datavalue(res8[0],'VHIrQfXq4jZ.YFztQ2vR71N');
+var smvalue489= datavalue(res8[0],'VHIrQfXq4jZ.pslMIlKFXBh');
+var smvalue490= datavalue(res8[0],'VHIrQfXq4jZ.HUIWuBTBq08');
+var smvalue491= datavalue(res8[0],'VHIrQfXq4jZ.yHSAPCLxecr');
+var smvalue492= datavalue(res8[0],'VHIrQfXq4jZ.Pch5POkRK8D');
+var smvalue493= datavalue(res8[0],'VHIrQfXq4jZ.UTolIBbDJGH');
+var smvalue494= datavalue(res8[0],'VHIrQfXq4jZ.cJJJCGGLTOi');
+var smvalue495= datavalue(res8[0],'VHIrQfXq4jZ.V0L9n6BBxKp');
+var smvalue496= datavalue(res8[0],'VHIrQfXq4jZ.VDDnYYh4gAK');
+var smvalue497= datavalue(res8[0],'VHIrQfXq4jZ.XpvgbSHy43w');
+var smvalue498= datavalue(res8[0],'VHIrQfXq4jZ.qEaRHNTa7mi');
+var smvalue499= datavalue(res8[0],'VHIrQfXq4jZ.cSY68ZH4wZg');
+var smvalue500= datavalue(res8[0],'VHIrQfXq4jZ.Z9N77nA1ZwN');
+var smvalue501= datavalue(res8[0],'VHIrQfXq4jZ.F1vIyc2K8oq');
+var smvalue502= datavalue(res8[0],'VHIrQfXq4jZ.SKR6BiGmH39');
+var smvalue503= datavalue(res8[0],'VHIrQfXq4jZ.K53Thqzzjya');
+var smvalue504= datavalue(res8[0],'VHIrQfXq4jZ.XBuwUD1utmH');
+var smvalue505= datavalue(res8[0],'VHIrQfXq4jZ.K53Thqzzjya');
+var smvalue506= datavalue(res8[0],'VHIrQfXq4jZ.XBuwUD1utmH');
+var smvalue507= datavalue(res8[0],'NagGCvaoIXC.J83ylYGKhbA');
+var smvalue508= datavalue(res8[0],'NagGCvaoIXC.YFztQ2vR71N');
+var smvalue509= datavalue(res8[0],'NagGCvaoIXC.pslMIlKFXBh');
+var smvalue510= datavalue(res8[0],'NagGCvaoIXC.HUIWuBTBq08');
+var smvalue511= datavalue(res8[0],'NagGCvaoIXC.yHSAPCLxecr');
+var smvalue512= datavalue(res8[0],'NagGCvaoIXC.Pch5POkRK8D');
+var smvalue513= datavalue(res8[0],'NagGCvaoIXC.UTolIBbDJGH');
+var smvalue514= datavalue(res8[0],'NagGCvaoIXC.cJJJCGGLTOi');
+var smvalue515= datavalue(res8[0],'NagGCvaoIXC.V0L9n6BBxKp');
+var smvalue516= datavalue(res8[0],'NagGCvaoIXC.VDDnYYh4gAK');
+var smvalue517= datavalue(res8[0],'NagGCvaoIXC.XpvgbSHy43w');
+var smvalue518= datavalue(res8[0],'NagGCvaoIXC.qEaRHNTa7mi');
+var smvalue519= datavalue(res8[0],'NagGCvaoIXC.cSY68ZH4wZg');
+var smvalue520= datavalue(res8[0],'NagGCvaoIXC.Z9N77nA1ZwN');
+var smvalue521= datavalue(res8[0],'NagGCvaoIXC.F1vIyc2K8oq');
+var smvalue522= datavalue(res8[0],'NagGCvaoIXC.SKR6BiGmH39');
+var smvalue523= datavalue(res8[0],'NagGCvaoIXC.K53Thqzzjya');
+var smvalue524= datavalue(res8[0],'NagGCvaoIXC.XBuwUD1utmH');
+var smvalue525= datavalue(res8[0],'NagGCvaoIXC.K53Thqzzjya');
+var smvalue526= datavalue(res8[0],'NagGCvaoIXC.XBuwUD1utmH');
+var smvalue527= datavalue(res8[0],'W4Bfg7wuLHw.J83ylYGKhbA');
+var smvalue528= datavalue(res8[0],'W4Bfg7wuLHw.YFztQ2vR71N');
+var smvalue529= datavalue(res8[0],'W4Bfg7wuLHw.pslMIlKFXBh');
+var smvalue530= datavalue(res8[0],'W4Bfg7wuLHw.HUIWuBTBq08');
+var smvalue531= datavalue(res8[0],'W4Bfg7wuLHw.yHSAPCLxecr');
+var smvalue532= datavalue(res8[0],'W4Bfg7wuLHw.Pch5POkRK8D');
+var smvalue533= datavalue(res8[0],'W4Bfg7wuLHw.UTolIBbDJGH');
+var smvalue534= datavalue(res8[0],'W4Bfg7wuLHw.cJJJCGGLTOi');
+var smvalue535= datavalue(res8[0],'W4Bfg7wuLHw.V0L9n6BBxKp');
+var smvalue536= datavalue(res8[0],'W4Bfg7wuLHw.VDDnYYh4gAK');
+var smvalue537= datavalue(res8[0],'W4Bfg7wuLHw.XpvgbSHy43w');
+var smvalue538= datavalue(res8[0],'W4Bfg7wuLHw.qEaRHNTa7mi');
+var smvalue539= datavalue(res8[0],'W4Bfg7wuLHw.cSY68ZH4wZg');
+var smvalue540= datavalue(res8[0],'W4Bfg7wuLHw.Z9N77nA1ZwN');
+var smvalue541= datavalue(res8[0],'W4Bfg7wuLHw.F1vIyc2K8oq');
+var smvalue542= datavalue(res8[0],'W4Bfg7wuLHw.SKR6BiGmH39');
+var smvalue543= datavalue(res8[0],'W4Bfg7wuLHw.K53Thqzzjya');
+var smvalue544= datavalue(res8[0],'W4Bfg7wuLHw.XBuwUD1utmH');
+var smvalue545= datavalue(res8[0],'W4Bfg7wuLHw.K53Thqzzjya');
+var smvalue546= datavalue(res8[0],'W4Bfg7wuLHw.XBuwUD1utmH');
+var smvalue547= datavalue(res8[0],'LVXGOxBuTSe.J83ylYGKhbA');
+var smvalue548= datavalue(res8[0],'LVXGOxBuTSe.YFztQ2vR71N');
+var smvalue549= datavalue(res8[0],'LVXGOxBuTSe.pslMIlKFXBh');
+var smvalue550= datavalue(res8[0],'LVXGOxBuTSe.HUIWuBTBq08');
+var smvalue551= datavalue(res8[0],'LVXGOxBuTSe.yHSAPCLxecr');
+var smvalue552= datavalue(res8[0],'LVXGOxBuTSe.Pch5POkRK8D');
+var smvalue553= datavalue(res8[0],'LVXGOxBuTSe.UTolIBbDJGH');
+var smvalue554= datavalue(res8[0],'LVXGOxBuTSe.cJJJCGGLTOi');
+var smvalue555= datavalue(res8[0],'LVXGOxBuTSe.V0L9n6BBxKp');
+var smvalue556= datavalue(res8[0],'LVXGOxBuTSe.VDDnYYh4gAK');
+var smvalue557= datavalue(res8[0],'LVXGOxBuTSe.XpvgbSHy43w');
+var smvalue558= datavalue(res8[0],'LVXGOxBuTSe.qEaRHNTa7mi');
+var smvalue559= datavalue(res8[0],'LVXGOxBuTSe.cSY68ZH4wZg');
+var smvalue560= datavalue(res8[0],'LVXGOxBuTSe.Z9N77nA1ZwN');
+var smvalue561= datavalue(res8[0],'LVXGOxBuTSe.F1vIyc2K8oq');
+var smvalue562= datavalue(res8[0],'LVXGOxBuTSe.SKR6BiGmH39');
+var smvalue563= datavalue(res8[0],'LVXGOxBuTSe.K53Thqzzjya');
+var smvalue564= datavalue(res8[0],'LVXGOxBuTSe.XBuwUD1utmH');
+var smvalue565= datavalue(res8[0],'LVXGOxBuTSe.K53Thqzzjya');
+var smvalue566= datavalue(res8[0],'LVXGOxBuTSe.XBuwUD1utmH');
+var smvalue567= datavalue(res8[0],'b6zR64TtP2h.J83ylYGKhbA');
+var smvalue568= datavalue(res8[0],'b6zR64TtP2h.YFztQ2vR71N');
+var smvalue569= datavalue(res8[0],'b6zR64TtP2h.pslMIlKFXBh');
+var smvalue570= datavalue(res8[0],'b6zR64TtP2h.HUIWuBTBq08');
+var smvalue571= datavalue(res8[0],'b6zR64TtP2h.yHSAPCLxecr');
+var smvalue572= datavalue(res8[0],'b6zR64TtP2h.Pch5POkRK8D');
+var smvalue573= datavalue(res8[0],'b6zR64TtP2h.UTolIBbDJGH');
+var smvalue574= datavalue(res8[0],'b6zR64TtP2h.cJJJCGGLTOi');
+var smvalue575= datavalue(res8[0],'b6zR64TtP2h.V0L9n6BBxKp');
+var smvalue576= datavalue(res8[0],'b6zR64TtP2h.VDDnYYh4gAK');
+var smvalue577= datavalue(res8[0],'b6zR64TtP2h.XpvgbSHy43w');
+var smvalue578= datavalue(res8[0],'b6zR64TtP2h.qEaRHNTa7mi');
+var smvalue579= datavalue(res8[0],'b6zR64TtP2h.cSY68ZH4wZg');
+var smvalue580= datavalue(res8[0],'b6zR64TtP2h.Z9N77nA1ZwN');
+var smvalue581= datavalue(res8[0],'b6zR64TtP2h.F1vIyc2K8oq');
+var smvalue582= datavalue(res8[0],'b6zR64TtP2h.SKR6BiGmH39');
+var smvalue583= datavalue(res8[0],'b6zR64TtP2h.K53Thqzzjya');
+var smvalue584= datavalue(res8[0],'b6zR64TtP2h.XBuwUD1utmH');
+var smvalue585= datavalue(res8[0],'b6zR64TtP2h.K53Thqzzjya');
+var smvalue586= datavalue(res8[0],'b6zR64TtP2h.XBuwUD1utmH');
+var smvalue587= datavalue(res8[0],'AOtdUEiUjRX.J83ylYGKhbA');
+var smvalue588= datavalue(res8[0],'AOtdUEiUjRX.YFztQ2vR71N');
+var smvalue589= datavalue(res8[0],'AOtdUEiUjRX.pslMIlKFXBh');
+var smvalue590= datavalue(res8[0],'AOtdUEiUjRX.HUIWuBTBq08');
+var smvalue591= datavalue(res8[0],'AOtdUEiUjRX.yHSAPCLxecr');
+var smvalue592= datavalue(res8[0],'AOtdUEiUjRX.Pch5POkRK8D');
+var smvalue593= datavalue(res8[0],'AOtdUEiUjRX.UTolIBbDJGH');
+var smvalue594= datavalue(res8[0],'AOtdUEiUjRX.cJJJCGGLTOi');
+var smvalue595= datavalue(res8[0],'AOtdUEiUjRX.V0L9n6BBxKp');
+var smvalue596= datavalue(res8[0],'AOtdUEiUjRX.VDDnYYh4gAK');
+var smvalue597= datavalue(res8[0],'AOtdUEiUjRX.XpvgbSHy43w');
+var smvalue598= datavalue(res8[0],'AOtdUEiUjRX.qEaRHNTa7mi');
+var smvalue599= datavalue(res8[0],'AOtdUEiUjRX.cSY68ZH4wZg');
+var smvalue600= datavalue(res8[0],'AOtdUEiUjRX.Z9N77nA1ZwN');
+var smvalue601= datavalue(res8[0],'AOtdUEiUjRX.F1vIyc2K8oq');
+var smvalue602= datavalue(res8[0],'AOtdUEiUjRX.SKR6BiGmH39');
+var smvalue603= datavalue(res8[0],'AOtdUEiUjRX.K53Thqzzjya');
+var smvalue604= datavalue(res8[0],'AOtdUEiUjRX.XBuwUD1utmH');
+var smvalue605= datavalue(res8[0],'AOtdUEiUjRX.K53Thqzzjya');
+var smvalue606= datavalue(res8[0],'AOtdUEiUjRX.XBuwUD1utmH');
+var smvalue607= datavalue(res8[0],'hMSln8QfLot.J83ylYGKhbA');
+var smvalue608= datavalue(res8[0],'hMSln8QfLot.YFztQ2vR71N');
+var smvalue609= datavalue(res8[0],'hMSln8QfLot.pslMIlKFXBh');
+var smvalue610= datavalue(res8[0],'hMSln8QfLot.HUIWuBTBq08');
+var smvalue611= datavalue(res8[0],'hMSln8QfLot.yHSAPCLxecr');
+var smvalue612= datavalue(res8[0],'hMSln8QfLot.Pch5POkRK8D');
+var smvalue613= datavalue(res8[0],'hMSln8QfLot.UTolIBbDJGH');
+var smvalue614= datavalue(res8[0],'hMSln8QfLot.cJJJCGGLTOi');
+var smvalue615= datavalue(res8[0],'hMSln8QfLot.V0L9n6BBxKp');
+var smvalue616= datavalue(res8[0],'hMSln8QfLot.VDDnYYh4gAK');
+var smvalue617= datavalue(res8[0],'hMSln8QfLot.XpvgbSHy43w');
+var smvalue618= datavalue(res8[0],'hMSln8QfLot.qEaRHNTa7mi');
+var smvalue619= datavalue(res8[0],'hMSln8QfLot.cSY68ZH4wZg');
+var smvalue620= datavalue(res8[0],'hMSln8QfLot.Z9N77nA1ZwN');
+var smvalue621= datavalue(res8[0],'hMSln8QfLot.F1vIyc2K8oq');
+var smvalue622= datavalue(res8[0],'hMSln8QfLot.SKR6BiGmH39');
+var smvalue623= datavalue(res8[0],'hMSln8QfLot.K53Thqzzjya');
+var smvalue624= datavalue(res8[0],'hMSln8QfLot.XBuwUD1utmH');
+var smvalue625= datavalue(res8[0],'hMSln8QfLot.K53Thqzzjya');
+var smvalue626= datavalue(res8[0],'hMSln8QfLot.XBuwUD1utmH');
+var smvalue627= datavalue(res8[0],'oPW0J6GQQgI.J83ylYGKhbA');
+var smvalue628= datavalue(res8[0],'oPW0J6GQQgI.YFztQ2vR71N');
+var smvalue629= datavalue(res8[0],'oPW0J6GQQgI.pslMIlKFXBh');
+var smvalue630= datavalue(res8[0],'oPW0J6GQQgI.HUIWuBTBq08');
+var smvalue631= datavalue(res8[0],'oPW0J6GQQgI.yHSAPCLxecr');
+var smvalue632= datavalue(res8[0],'oPW0J6GQQgI.Pch5POkRK8D');
+var smvalue633= datavalue(res8[0],'oPW0J6GQQgI.UTolIBbDJGH');
+var smvalue634= datavalue(res8[0],'oPW0J6GQQgI.cJJJCGGLTOi');
+var smvalue635= datavalue(res8[0],'oPW0J6GQQgI.V0L9n6BBxKp');
+var smvalue636= datavalue(res8[0],'oPW0J6GQQgI.VDDnYYh4gAK');
+var smvalue637= datavalue(res8[0],'oPW0J6GQQgI.XpvgbSHy43w');
+var smvalue638= datavalue(res8[0],'oPW0J6GQQgI.qEaRHNTa7mi');
+var smvalue639= datavalue(res8[0],'oPW0J6GQQgI.cSY68ZH4wZg');
+var smvalue640= datavalue(res8[0],'oPW0J6GQQgI.Z9N77nA1ZwN');
+var smvalue641= datavalue(res8[0],'oPW0J6GQQgI.F1vIyc2K8oq');
+var smvalue642= datavalue(res8[0],'oPW0J6GQQgI.SKR6BiGmH39');
+var smvalue643= datavalue(res8[0],'oPW0J6GQQgI.K53Thqzzjya');
+var smvalue644= datavalue(res8[0],'oPW0J6GQQgI.XBuwUD1utmH');
+var smvalue645= datavalue(res8[0],'oPW0J6GQQgI.K53Thqzzjya');
+var smvalue646= datavalue(res8[0],'oPW0J6GQQgI.XBuwUD1utmH');
+var smvalue647= datavalue(res8[0],'rYll3qu2fjg.J83ylYGKhbA');
+var smvalue648= datavalue(res8[0],'rYll3qu2fjg.YFztQ2vR71N');
+var smvalue649= datavalue(res8[0],'rYll3qu2fjg.pslMIlKFXBh');
+var smvalue650= datavalue(res8[0],'rYll3qu2fjg.HUIWuBTBq08');
+var smvalue651= datavalue(res8[0],'rYll3qu2fjg.yHSAPCLxecr');
+var smvalue652= datavalue(res8[0],'rYll3qu2fjg.Pch5POkRK8D');
+var smvalue653= datavalue(res8[0],'rYll3qu2fjg.UTolIBbDJGH');
+var smvalue654= datavalue(res8[0],'rYll3qu2fjg.cJJJCGGLTOi');
+var smvalue655= datavalue(res8[0],'rYll3qu2fjg.V0L9n6BBxKp');
+var smvalue656= datavalue(res8[0],'rYll3qu2fjg.VDDnYYh4gAK');
+var smvalue657= datavalue(res8[0],'rYll3qu2fjg.XpvgbSHy43w');
+var smvalue658= datavalue(res8[0],'rYll3qu2fjg.qEaRHNTa7mi');
+var smvalue659= datavalue(res8[0],'rYll3qu2fjg.cSY68ZH4wZg');
+var smvalue660= datavalue(res8[0],'rYll3qu2fjg.Z9N77nA1ZwN');
+var smvalue661= datavalue(res8[0],'rYll3qu2fjg.F1vIyc2K8oq');
+var smvalue662= datavalue(res8[0],'rYll3qu2fjg.SKR6BiGmH39');
+var smvalue663= datavalue(res8[0],'rYll3qu2fjg.K53Thqzzjya');
+var smvalue664= datavalue(res8[0],'rYll3qu2fjg.XBuwUD1utmH');
+var smvalue665= datavalue(res8[0],'rYll3qu2fjg.K53Thqzzjya');
+var smvalue666= datavalue(res8[0],'rYll3qu2fjg.XBuwUD1utmH');
+var smvalue667= datavalue(res8[0],'GlQlTqjPdVe.J83ylYGKhbA');
+var smvalue668= datavalue(res8[0],'GlQlTqjPdVe.YFztQ2vR71N');
+var smvalue669= datavalue(res8[0],'GlQlTqjPdVe.pslMIlKFXBh');
+var smvalue670= datavalue(res8[0],'GlQlTqjPdVe.HUIWuBTBq08');
+var smvalue671= datavalue(res8[0],'GlQlTqjPdVe.yHSAPCLxecr');
+var smvalue672= datavalue(res8[0],'GlQlTqjPdVe.Pch5POkRK8D');
+var smvalue673= datavalue(res8[0],'GlQlTqjPdVe.UTolIBbDJGH');
+var smvalue674= datavalue(res8[0],'GlQlTqjPdVe.cJJJCGGLTOi');
+var smvalue675= datavalue(res8[0],'GlQlTqjPdVe.V0L9n6BBxKp');
+var smvalue676= datavalue(res8[0],'GlQlTqjPdVe.VDDnYYh4gAK');
+var smvalue677= datavalue(res8[0],'GlQlTqjPdVe.XpvgbSHy43w');
+var smvalue678= datavalue(res8[0],'GlQlTqjPdVe.qEaRHNTa7mi');
+var smvalue679= datavalue(res8[0],'GlQlTqjPdVe.cSY68ZH4wZg');
+var smvalue680= datavalue(res8[0],'GlQlTqjPdVe.Z9N77nA1ZwN');
+var smvalue681= datavalue(res8[0],'GlQlTqjPdVe.F1vIyc2K8oq');
+var smvalue682= datavalue(res8[0],'GlQlTqjPdVe.SKR6BiGmH39');
+var smvalue683= datavalue(res8[0],'GlQlTqjPdVe.K53Thqzzjya');
+var smvalue684= datavalue(res8[0],'GlQlTqjPdVe.XBuwUD1utmH');
+var smvalue685= datavalue(res8[0],'GlQlTqjPdVe.K53Thqzzjya');
+var smvalue686= datavalue(res8[0],'GlQlTqjPdVe.XBuwUD1utmH');
+var smvalue687= datavalue(res8[0],'GlQlTqjPdVe.J83ylYGKhbA');
+var smvalue688= datavalue(res8[0],'GlQlTqjPdVe.YFztQ2vR71N');
+var smvalue689= datavalue(res8[0],'GlQlTqjPdVe.pslMIlKFXBh');
+var smvalue690= datavalue(res8[0],'GlQlTqjPdVe.HUIWuBTBq08');
+var smvalue691= datavalue(res8[0],'GlQlTqjPdVe.yHSAPCLxecr');
+var smvalue692= datavalue(res8[0],'GlQlTqjPdVe.Pch5POkRK8D');
+var smvalue693= datavalue(res8[0],'GlQlTqjPdVe.UTolIBbDJGH');
+var smvalue694= datavalue(res8[0],'GlQlTqjPdVe.cJJJCGGLTOi');
+var smvalue695= datavalue(res8[0],'GlQlTqjPdVe.V0L9n6BBxKp');
+var smvalue696= datavalue(res8[0],'GlQlTqjPdVe.VDDnYYh4gAK');
+var smvalue697= datavalue(res8[0],'GlQlTqjPdVe.XpvgbSHy43w');
+var smvalue698= datavalue(res8[0],'GlQlTqjPdVe.qEaRHNTa7mi');
+var smvalue699= datavalue(res8[0],'GlQlTqjPdVe.cSY68ZH4wZg');
+var smvalue700= datavalue(res8[0],'GlQlTqjPdVe.Z9N77nA1ZwN');
+var smvalue701= datavalue(res8[0],'GlQlTqjPdVe.F1vIyc2K8oq');
+var smvalue702= datavalue(res8[0],'GlQlTqjPdVe.SKR6BiGmH39');
+var smvalue703= datavalue(res8[0],'GlQlTqjPdVe.K53Thqzzjya');
+var smvalue704= datavalue(res8[0],'GlQlTqjPdVe.XBuwUD1utmH');
+var smvalue705= datavalue(res8[0],'GlQlTqjPdVe.K53Thqzzjya');
+var smvalue706= datavalue(res8[0],'GlQlTqjPdVe.XBuwUD1utmH');
+
+
+var ressmvalue10 = smvalue447+smvalue448+smvalue449	+smvalue450	+smvalue451	+smvalue452	+smvalue453	+smvalue454	+smvalue455	+smvalue456	+smvalue457	+smvalue458	+smvalue459	+smvalue460	+smvalue461	+smvalue462	+smvalue463	+smvalue464	+smvalue465	+smvalue466	+smvalue467	+smvalue468	+smvalue469	+smvalue470	+smvalue471	+smvalue472	+smvalue473	+smvalue474	+smvalue475	+smvalue476	+smvalue477	+smvalue478	+smvalue479	+smvalue480	+smvalue481	+smvalue482	+smvalue483	+smvalue484	+smvalue485	+smvalue486	+smvalue487	+smvalue488	+smvalue489	+smvalue490	+smvalue491	+smvalue492	+smvalue493	+smvalue494	+smvalue495	+smvalue496	+smvalue497	+smvalue498	+smvalue499	+smvalue500	+smvalue501	+smvalue502	+smvalue503	+smvalue504	+smvalue505	+smvalue506	+smvalue507	+smvalue508	+smvalue509	+smvalue510	+smvalue511	+smvalue512	+smvalue513	+smvalue514	+smvalue515	+smvalue516	+smvalue517	+smvalue518	+smvalue519	+smvalue520	+smvalue521	+smvalue522	+smvalue523	+smvalue524	+smvalue525	+smvalue526	+smvalue527	+smvalue528	+smvalue529	+smvalue530	+smvalue531	+smvalue532	+smvalue533	+smvalue534	+smvalue535	+smvalue536	+smvalue537	+smvalue538	+smvalue539	+smvalue540	+smvalue541	+smvalue542	+smvalue543	+smvalue544	+
+smvalue545	+smvalue546	+smvalue547	+smvalue548	+smvalue549	+smvalue550	+smvalue551	+smvalue552	+smvalue553	+smvalue554	+smvalue555	+
+smvalue556	+smvalue557	+smvalue558	+smvalue559	+smvalue560	+smvalue561	+smvalue562	+smvalue563	+smvalue564	+smvalue565	+smvalue566	+smvalue567	+smvalue568	+smvalue569	+smvalue570	+smvalue571	+smvalue572	+smvalue573	+smvalue574	+smvalue575	+smvalue576	+smvalue577	+smvalue578	+smvalue579	+smvalue580	+smvalue581	+smvalue582	+smvalue583	+smvalue584	+smvalue585	+smvalue586	+smvalue587	+smvalue588	+smvalue589	+smvalue590	+smvalue591	+smvalue592	+smvalue593	+smvalue594	+smvalue595	+smvalue596	+smvalue597	+smvalue598	+smvalue599	+
+smvalue600	+smvalue601	+smvalue602	+smvalue603	+smvalue604	+smvalue605	+smvalue606	+smvalue607	+smvalue608	+smvalue609	+smvalue610	+
+smvalue611	+smvalue612	+smvalue613	+smvalue614	+smvalue615	+smvalue616	+smvalue617	+smvalue618	+smvalue619	+smvalue620	+smvalue621	+smvalue622	+smvalue623	+smvalue624	+smvalue625	+smvalue626	+smvalue627	+smvalue628	+smvalue629	+smvalue630	+smvalue631	+smvalue632	+smvalue633	+smvalue634	+smvalue635	+smvalue636	+smvalue637	+smvalue638	+smvalue639	+smvalue640	+smvalue641	+smvalue642	+smvalue643	+
+smvalue644	+smvalue645	+smvalue646	+smvalue647	+smvalue648	+smvalue649	+smvalue650	+smvalue651	+smvalue652	+smvalue653	+smvalue654	+
+smvalue655	+smvalue656	+smvalue657	+smvalue658	+smvalue659	+smvalue660	+smvalue661	+smvalue662	+smvalue663	+smvalue664	+smvalue665	+smvalue666	+smvalue667	+smvalue668	+smvalue669	+smvalue670	+smvalue671	+smvalue672	+smvalue673	+smvalue674	+smvalue675	+smvalue676	+
+smvalue677	+smvalue678	+smvalue679	+smvalue680	+smvalue681	+smvalue682	+smvalue683	+smvalue684	+smvalue685	+smvalue686	+smvalue687	+smvalue688	+smvalue689	+smvalue690	+smvalue691	+smvalue692	+smvalue693	+smvalue694	+smvalue695	+smvalue696	+smvalue697	+smvalue698	+smvalue699	+smvalue700	+smvalue701	+smvalue702	+smvalue703	+smvalue704	+smvalue705	+smvalue706;
+
+
+var smvalue707= datavalue(res8[0],'QkBXX7u6gFp.J83ylYGKhbA');
+var smvalue708= datavalue(res8[0],'QkBXX7u6gFp.YFztQ2vR71N');
+var smvalue709= datavalue(res8[0],'QkBXX7u6gFp.pslMIlKFXBh');
+var smvalue710= datavalue(res8[0],'QkBXX7u6gFp.HUIWuBTBq08');
+var smvalue711= datavalue(res8[0],'QkBXX7u6gFp.yHSAPCLxecr');
+var smvalue712= datavalue(res8[0],'QkBXX7u6gFp.Pch5POkRK8D');
+var smvalue713= datavalue(res8[0],'QkBXX7u6gFp.UTolIBbDJGH');
+var smvalue714= datavalue(res8[0],'QkBXX7u6gFp.cJJJCGGLTOi');
+var smvalue715= datavalue(res8[0],'QkBXX7u6gFp.V0L9n6BBxKp');
+var smvalue716= datavalue(res8[0],'QkBXX7u6gFp.VDDnYYh4gAK');
+var smvalue717= datavalue(res8[0],'QkBXX7u6gFp.XpvgbSHy43w');
+var smvalue718= datavalue(res8[0],'QkBXX7u6gFp.qEaRHNTa7mi');
+var smvalue719= datavalue(res8[0],'QkBXX7u6gFp.cSY68ZH4wZg');
+var smvalue720= datavalue(res8[0],'QkBXX7u6gFp.Z9N77nA1ZwN');
+var smvalue721= datavalue(res8[0],'QkBXX7u6gFp.F1vIyc2K8oq');
+var smvalue722= datavalue(res8[0],'QkBXX7u6gFp.SKR6BiGmH39');
+var smvalue723= datavalue(res8[0],'QkBXX7u6gFp.K53Thqzzjya');
+var smvalue724= datavalue(res8[0],'QkBXX7u6gFp.XBuwUD1utmH');
+var smvalue725= datavalue(res8[0],'QkBXX7u6gFp.K53Thqzzjya');
+var smvalue726= datavalue(res8[0],'QkBXX7u6gFp.XBuwUD1utmH');
+var smvalue727= datavalue(res8[0],'QyQ7vy2TcJr.J83ylYGKhbA');
+var smvalue728= datavalue(res8[0],'QyQ7vy2TcJr.YFztQ2vR71N');
+var smvalue729= datavalue(res8[0],'QyQ7vy2TcJr.pslMIlKFXBh');
+var smvalue730= datavalue(res8[0],'QyQ7vy2TcJr.HUIWuBTBq08');
+var smvalue731= datavalue(res8[0],'QyQ7vy2TcJr.yHSAPCLxecr');
+var smvalue732= datavalue(res8[0],'QyQ7vy2TcJr.Pch5POkRK8D');
+var smvalue733= datavalue(res8[0],'QyQ7vy2TcJr.UTolIBbDJGH');
+var smvalue734= datavalue(res8[0],'QyQ7vy2TcJr.cJJJCGGLTOi');
+var smvalue735= datavalue(res8[0],'QyQ7vy2TcJr.V0L9n6BBxKp');
+var smvalue736= datavalue(res8[0],'QyQ7vy2TcJr.VDDnYYh4gAK');
+var smvalue737= datavalue(res8[0],'QyQ7vy2TcJr.XpvgbSHy43w');
+var smvalue738= datavalue(res8[0],'QyQ7vy2TcJr.qEaRHNTa7mi');
+var smvalue739= datavalue(res8[0],'QyQ7vy2TcJr.cSY68ZH4wZg');
+var smvalue740= datavalue(res8[0],'QyQ7vy2TcJr.Z9N77nA1ZwN');
+var smvalue741= datavalue(res8[0],'QyQ7vy2TcJr.F1vIyc2K8oq');
+var smvalue742= datavalue(res8[0],'QyQ7vy2TcJr.SKR6BiGmH39');
+var smvalue743= datavalue(res8[0],'QyQ7vy2TcJr.K53Thqzzjya');
+var smvalue744= datavalue(res8[0],'QyQ7vy2TcJr.XBuwUD1utmH');
+var smvalue745= datavalue(res8[0],'QyQ7vy2TcJr.K53Thqzzjya');
+var smvalue746= datavalue(res8[0],'QyQ7vy2TcJr.XBuwUD1utmH');
+
+
+var ressmvalue11 = smvalue707+smvalue708+smvalue709	+smvalue710	+smvalue711	+smvalue712	+smvalue713	+smvalue714	+smvalue715	+smvalue716	+smvalue717	+smvalue718	+smvalue719	+smvalue720	+smvalue721	+smvalue722	+smvalue723	+smvalue724	+smvalue725	+smvalue726	+smvalue727	+
+smvalue728	+smvalue729	+smvalue730	+smvalue731	+smvalue732	+smvalue733	+smvalue734	+smvalue735	+smvalue736	+smvalue737	+smvalue738+smvalue739	+smvalue740	+smvalue741	+smvalue742	+smvalue743	+smvalue744	+smvalue745	+smvalue746;
+
+var smvalue747= datavalue(res9[0],'uu4pB0DpAye.J83ylYGKhbA');
+var smvalue748= datavalue(res9[0],'uu4pB0DpAye.YFztQ2vR71N');
+var smvalue749= datavalue(res9[0],'uu4pB0DpAye.pslMIlKFXBh');
+var smvalue750= datavalue(res9[0],'uu4pB0DpAye.HUIWuBTBq08');
+var smvalue751= datavalue(res9[0],'uu4pB0DpAye.yHSAPCLxecr');
+var smvalue752= datavalue(res9[0],'uu4pB0DpAye.Pch5POkRK8D');
+var smvalue753= datavalue(res9[0],'uu4pB0DpAye.UTolIBbDJGH');
+var smvalue754= datavalue(res9[0],'uu4pB0DpAye.cJJJCGGLTOi');
+var smvalue755= datavalue(res9[0],'uu4pB0DpAye.V0L9n6BBxKp');
+var smvalue756= datavalue(res9[0],'uu4pB0DpAye.VDDnYYh4gAK');
+var smvalue757= datavalue(res9[0],'uu4pB0DpAye.XpvgbSHy43w');
+var smvalue758= datavalue(res9[0],'uu4pB0DpAye.qEaRHNTa7mi');
+var smvalue759= datavalue(res9[0],'uu4pB0DpAye.cSY68ZH4wZg');
+var smvalue760= datavalue(res9[0],'uu4pB0DpAye.Z9N77nA1ZwN');
+var smvalue761= datavalue(res9[0],'uu4pB0DpAye.F1vIyc2K8oq');
+var smvalue762= datavalue(res9[0],'uu4pB0DpAye.SKR6BiGmH39');
+var smvalue763= datavalue(res9[0],'uu4pB0DpAye.K53Thqzzjya');
+var smvalue764= datavalue(res9[0],'uu4pB0DpAye.XBuwUD1utmH');
+var smvalue765= datavalue(res9[0],'uu4pB0DpAye.K53Thqzzjya');
+var smvalue766= datavalue(res9[0],'uu4pB0DpAye.XBuwUD1utmH');
+
+var ressmvalue12 = smvalue747+smvalue748+smvalue749	+smvalue750	+smvalue751	+smvalue752	+smvalue753	+smvalue754	+smvalue755	+smvalue756	+
+smvalue757	+smvalue758	+smvalue759	+smvalue760	+smvalue761	+smvalue762	+smvalue763	+smvalue764	+smvalue765	+smvalue766	;
+
+var smvalue767= datavalue(res9[0],'Bb34fGca42C.J83ylYGKhbA');
+var smvalue768= datavalue(res9[0],'Bb34fGca42C.YFztQ2vR71N');
+var smvalue769= datavalue(res9[0],'Bb34fGca42C.pslMIlKFXBh');
+var smvalue770= datavalue(res9[0],'Bb34fGca42C.HUIWuBTBq08');
+var smvalue771= datavalue(res9[0],'Bb34fGca42C.yHSAPCLxecr');
+var smvalue772= datavalue(res9[0],'Bb34fGca42C.Pch5POkRK8D');
+var smvalue773= datavalue(res9[0],'Bb34fGca42C.UTolIBbDJGH');
+var smvalue774= datavalue(res9[0],'Bb34fGca42C.cJJJCGGLTOi');
+var smvalue775= datavalue(res9[0],'Bb34fGca42C.V0L9n6BBxKp');
+var smvalue776= datavalue(res9[0],'Bb34fGca42C.VDDnYYh4gAK');
+var smvalue777= datavalue(res9[0],'Bb34fGca42C.XpvgbSHy43w');
+var smvalue778= datavalue(res9[0],'Bb34fGca42C.qEaRHNTa7mi');
+var smvalue779= datavalue(res9[0],'Bb34fGca42C.cSY68ZH4wZg');
+var smvalue780= datavalue(res9[0],'Bb34fGca42C.Z9N77nA1ZwN');
+var smvalue781= datavalue(res9[0],'Bb34fGca42C.F1vIyc2K8oq');
+var smvalue782= datavalue(res9[0],'Bb34fGca42C.SKR6BiGmH39');
+var smvalue783= datavalue(res9[0],'Bb34fGca42C.K53Thqzzjya');
+var smvalue784= datavalue(res9[0],'Bb34fGca42C.XBuwUD1utmH');
+var smvalue785= datavalue(res9[0],'Bb34fGca42C.K53Thqzzjya');
+var smvalue786= datavalue(res9[0],'Bb34fGca42C.XBuwUD1utmH');
+var smvalue787= datavalue(res9[0],'HboMvLIcsU1.J83ylYGKhbA');
+var smvalue788= datavalue(res9[0],'HboMvLIcsU1.YFztQ2vR71N');
+var smvalue789= datavalue(res9[0],'HboMvLIcsU1.pslMIlKFXBh');
+var smvalue790= datavalue(res9[0],'HboMvLIcsU1.HUIWuBTBq08');
+var smvalue791= datavalue(res9[0],'HboMvLIcsU1.yHSAPCLxecr');
+var smvalue792= datavalue(res9[0],'HboMvLIcsU1.Pch5POkRK8D');
+var smvalue793= datavalue(res9[0],'HboMvLIcsU1.UTolIBbDJGH');
+var smvalue794= datavalue(res9[0],'HboMvLIcsU1.cJJJCGGLTOi');
+var smvalue795= datavalue(res9[0],'HboMvLIcsU1.V0L9n6BBxKp');
+var smvalue796= datavalue(res9[0],'HboMvLIcsU1.VDDnYYh4gAK');
+var smvalue797= datavalue(res9[0],'HboMvLIcsU1.XpvgbSHy43w');
+var smvalue798= datavalue(res9[0],'HboMvLIcsU1.qEaRHNTa7mi');
+var smvalue799= datavalue(res9[0],'HboMvLIcsU1.cSY68ZH4wZg');
+var smvalue800= datavalue(res9[0],'HboMvLIcsU1.Z9N77nA1ZwN');
+var smvalue801= datavalue(res9[0],'HboMvLIcsU1.F1vIyc2K8oq');
+var smvalue802= datavalue(res9[0],'HboMvLIcsU1.SKR6BiGmH39');
+var smvalue803= datavalue(res9[0],'HboMvLIcsU1.K53Thqzzjya');
+var smvalue804= datavalue(res9[0],'HboMvLIcsU1.XBuwUD1utmH');
+var smvalue805= datavalue(res9[0],'HboMvLIcsU1.K53Thqzzjya');
+var smvalue806= datavalue(res9[0],'HboMvLIcsU1.XBuwUD1utmH');
+var smvalue807= datavalue(res9[0],'gYCNpm9shdA.J83ylYGKhbA');
+var smvalue808= datavalue(res9[0],'gYCNpm9shdA.YFztQ2vR71N');
+var smvalue809= datavalue(res9[0],'gYCNpm9shdA.pslMIlKFXBh');
+var smvalue810= datavalue(res9[0],'gYCNpm9shdA.HUIWuBTBq08');
+var smvalue811= datavalue(res9[0],'gYCNpm9shdA.yHSAPCLxecr');
+var smvalue812= datavalue(res9[0],'gYCNpm9shdA.Pch5POkRK8D');
+var smvalue813= datavalue(res9[0],'gYCNpm9shdA.UTolIBbDJGH');
+var smvalue814= datavalue(res9[0],'gYCNpm9shdA.cJJJCGGLTOi');
+var smvalue815= datavalue(res9[0],'gYCNpm9shdA.V0L9n6BBxKp');
+var smvalue816= datavalue(res9[0],'gYCNpm9shdA.VDDnYYh4gAK');
+var smvalue817= datavalue(res9[0],'gYCNpm9shdA.XpvgbSHy43w');
+var smvalue818= datavalue(res9[0],'gYCNpm9shdA.qEaRHNTa7mi');
+var smvalue819= datavalue(res9[0],'gYCNpm9shdA.cSY68ZH4wZg');
+var smvalue820= datavalue(res9[0],'gYCNpm9shdA.Z9N77nA1ZwN');
+var smvalue821= datavalue(res9[0],'gYCNpm9shdA.F1vIyc2K8oq');
+var smvalue822= datavalue(res9[0],'gYCNpm9shdA.SKR6BiGmH39');
+var smvalue823= datavalue(res9[0],'gYCNpm9shdA.K53Thqzzjya');
+var smvalue824= datavalue(res9[0],'gYCNpm9shdA.XBuwUD1utmH');
+var smvalue825= datavalue(res9[0],'gYCNpm9shdA.K53Thqzzjya');
+var smvalue826= datavalue(res9[0],'gYCNpm9shdA.XBuwUD1utmH');
+var smvalue827= datavalue(res9[0],'DvOgeUKPF0u.J83ylYGKhbA');
+var smvalue828= datavalue(res9[0],'DvOgeUKPF0u.YFztQ2vR71N');
+var smvalue829= datavalue(res9[0],'DvOgeUKPF0u.pslMIlKFXBh');
+var smvalue830= datavalue(res9[0],'DvOgeUKPF0u.HUIWuBTBq08');
+var smvalue831= datavalue(res9[0],'DvOgeUKPF0u.yHSAPCLxecr');
+var smvalue832= datavalue(res9[0],'DvOgeUKPF0u.Pch5POkRK8D');
+var smvalue833= datavalue(res9[0],'DvOgeUKPF0u.UTolIBbDJGH');
+var smvalue834= datavalue(res9[0],'DvOgeUKPF0u.cJJJCGGLTOi');
+var smvalue835= datavalue(res9[0],'DvOgeUKPF0u.V0L9n6BBxKp');
+var smvalue836= datavalue(res9[0],'DvOgeUKPF0u.VDDnYYh4gAK');
+var smvalue837= datavalue(res9[0],'DvOgeUKPF0u.XpvgbSHy43w');
+var smvalue838= datavalue(res9[0],'DvOgeUKPF0u.qEaRHNTa7mi');
+var smvalue839= datavalue(res9[0],'DvOgeUKPF0u.cSY68ZH4wZg');
+var smvalue840= datavalue(res9[0],'DvOgeUKPF0u.Z9N77nA1ZwN');
+var smvalue841= datavalue(res9[0],'DvOgeUKPF0u.F1vIyc2K8oq');
+var smvalue842= datavalue(res9[0],'DvOgeUKPF0u.SKR6BiGmH39');
+var smvalue843= datavalue(res9[0],'DvOgeUKPF0u.K53Thqzzjya');
+var smvalue844= datavalue(res9[0],'DvOgeUKPF0u.XBuwUD1utmH');
+var smvalue845= datavalue(res9[0],'DvOgeUKPF0u.K53Thqzzjya');
+var smvalue846= datavalue(res9[0],'DvOgeUKPF0u.XBuwUD1utmH');
+var smvalue847= datavalue(res9[0],'i2mZ5eXEa6G.J83ylYGKhbA');
+var smvalue848= datavalue(res9[0],'i2mZ5eXEa6G.YFztQ2vR71N');
+var smvalue849= datavalue(res9[0],'i2mZ5eXEa6G.pslMIlKFXBh');
+var smvalue850= datavalue(res9[0],'i2mZ5eXEa6G.HUIWuBTBq08');
+var smvalue851= datavalue(res9[0],'i2mZ5eXEa6G.yHSAPCLxecr');
+var smvalue852= datavalue(res9[0],'i2mZ5eXEa6G.Pch5POkRK8D');
+var smvalue853= datavalue(res9[0],'i2mZ5eXEa6G.UTolIBbDJGH');
+var smvalue854= datavalue(res9[0],'i2mZ5eXEa6G.cJJJCGGLTOi');
+var smvalue855= datavalue(res9[0],'i2mZ5eXEa6G.V0L9n6BBxKp');
+var smvalue856= datavalue(res9[0],'i2mZ5eXEa6G.VDDnYYh4gAK');
+var smvalue857= datavalue(res9[0],'i2mZ5eXEa6G.XpvgbSHy43w');
+var smvalue858= datavalue(res9[0],'i2mZ5eXEa6G.qEaRHNTa7mi');
+var smvalue859= datavalue(res9[0],'i2mZ5eXEa6G.cSY68ZH4wZg');
+var smvalue860= datavalue(res9[0],'i2mZ5eXEa6G.Z9N77nA1ZwN');
+var smvalue861= datavalue(res9[0],'i2mZ5eXEa6G.F1vIyc2K8oq');
+var smvalue862= datavalue(res9[0],'i2mZ5eXEa6G.SKR6BiGmH39');
+var smvalue863= datavalue(res9[0],'i2mZ5eXEa6G.K53Thqzzjya');
+var smvalue864= datavalue(res9[0],'i2mZ5eXEa6G.XBuwUD1utmH');
+var smvalue865= datavalue(res9[0],'i2mZ5eXEa6G.K53Thqzzjya');
+var smvalue866= datavalue(res9[0],'i2mZ5eXEa6G.XBuwUD1utmH');
+var smvalue867= datavalue(res9[0],'F1nIcbsEnZW.J83ylYGKhbA');
+var smvalue868= datavalue(res9[0],'F1nIcbsEnZW.YFztQ2vR71N');
+var smvalue869= datavalue(res9[0],'F1nIcbsEnZW.pslMIlKFXBh');
+var smvalue870= datavalue(res9[0],'F1nIcbsEnZW.HUIWuBTBq08');
+var smvalue871= datavalue(res9[0],'F1nIcbsEnZW.yHSAPCLxecr');
+var smvalue872= datavalue(res9[0],'F1nIcbsEnZW.Pch5POkRK8D');
+var smvalue873= datavalue(res9[0],'F1nIcbsEnZW.UTolIBbDJGH');
+var smvalue874= datavalue(res9[0],'F1nIcbsEnZW.cJJJCGGLTOi');
+var smvalue875= datavalue(res9[0],'F1nIcbsEnZW.V0L9n6BBxKp');
+var smvalue876= datavalue(res9[0],'F1nIcbsEnZW.VDDnYYh4gAK');
+var smvalue877= datavalue(res9[0],'F1nIcbsEnZW.XpvgbSHy43w');
+var smvalue878= datavalue(res9[0],'F1nIcbsEnZW.qEaRHNTa7mi');
+var smvalue879= datavalue(res9[0],'F1nIcbsEnZW.cSY68ZH4wZg');
+var smvalue880= datavalue(res9[0],'F1nIcbsEnZW.Z9N77nA1ZwN');
+var smvalue881= datavalue(res9[0],'F1nIcbsEnZW.F1vIyc2K8oq');
+var smvalue882= datavalue(res9[0],'F1nIcbsEnZW.SKR6BiGmH39');
+var smvalue883= datavalue(res9[0],'F1nIcbsEnZW.K53Thqzzjya');
+var smvalue884= datavalue(res9[0],'F1nIcbsEnZW.XBuwUD1utmH');
+var smvalue885= datavalue(res9[0],'F1nIcbsEnZW.K53Thqzzjya');
+var smvalue886= datavalue(res9[0],'F1nIcbsEnZW.XBuwUD1utmH');
+
+var ressmvalue13 = smvalue767	+smvalue768	+smvalue769	+smvalue770	+smvalue771	+smvalue772	+smvalue773	+smvalue774	+smvalue775	+smvalue776	+smvalue777	+smvalue778	+smvalue779	+smvalue780	+smvalue781	+smvalue782	+smvalue783	+smvalue784	+smvalue785	+smvalue786	+smvalue787	+smvalue788	+smvalue789	+smvalue790	+smvalue791	+smvalue792	+smvalue793	+smvalue794	+smvalue795	+smvalue796	+smvalue797	+
+smvalue798	+smvalue799	+smvalue800	+smvalue801	+smvalue802	+smvalue803	+smvalue804	+smvalue805	+smvalue806	+smvalue807	+smvalue808	+
+smvalue809	+smvalue810	+smvalue811	+smvalue812	+smvalue813	+smvalue814	+smvalue815	+smvalue816	+smvalue817	+smvalue818	+smvalue819	+smvalue820	+smvalue821	+smvalue822	+smvalue823	+smvalue824	+smvalue825	+smvalue826	+smvalue827	+smvalue828	+smvalue829	+smvalue830	+smvalue831	+smvalue832	+smvalue833	+smvalue834	+smvalue835	+smvalue836	+smvalue837	+smvalue838	+smvalue839	+smvalue840	+smvalue841	+smvalue842	+smvalue843	+smvalue844	+smvalue845	+smvalue846	+smvalue847	+smvalue848	+smvalue849	+smvalue850	+smvalue851	+smvalue852	+
+smvalue853	+smvalue854	+smvalue855	+smvalue856	+smvalue857	+smvalue858	+smvalue859	+smvalue860	+smvalue861	+smvalue862	+smvalue863	+smvalue864	+smvalue865	+smvalue866	+smvalue867	+smvalue868	+smvalue869	+smvalue870	+smvalue871	+smvalue872	+smvalue873	+smvalue874	+
+smvalue875	+smvalue876	+smvalue877	+smvalue878	+smvalue879	+smvalue880	+smvalue881	+smvalue882	+smvalue883	+smvalue884	+smvalue885	+smvalue886	;
+
+var smvalue887= datavalue(res9[0],'F1nIcbsEnZW.J83ylYGKhbA');
+var smvalue888= datavalue(res9[0],'F1nIcbsEnZW.YFztQ2vR71N');
+var smvalue889= datavalue(res9[0],'F1nIcbsEnZW.pslMIlKFXBh');
+var smvalue890= datavalue(res9[0],'F1nIcbsEnZW.HUIWuBTBq08');
+var smvalue891= datavalue(res9[0],'F1nIcbsEnZW.yHSAPCLxecr');
+var smvalue892= datavalue(res9[0],'F1nIcbsEnZW.Pch5POkRK8D');
+var smvalue893= datavalue(res9[0],'F1nIcbsEnZW.UTolIBbDJGH');
+var smvalue894= datavalue(res9[0],'F1nIcbsEnZW.cJJJCGGLTOi');
+var smvalue895= datavalue(res9[0],'F1nIcbsEnZW.V0L9n6BBxKp');
+var smvalue896= datavalue(res9[0],'F1nIcbsEnZW.VDDnYYh4gAK');
+var smvalue897= datavalue(res9[0],'F1nIcbsEnZW.XpvgbSHy43w');
+var smvalue898= datavalue(res9[0],'F1nIcbsEnZW.qEaRHNTa7mi');
+var smvalue899= datavalue(res9[0],'F1nIcbsEnZW.cSY68ZH4wZg');
+var smvalue900= datavalue(res9[0],'F1nIcbsEnZW.Z9N77nA1ZwN');
+var smvalue901= datavalue(res9[0],'F1nIcbsEnZW.F1vIyc2K8oq');
+var smvalue902= datavalue(res9[0],'F1nIcbsEnZW.SKR6BiGmH39');
+var smvalue903= datavalue(res9[0],'F1nIcbsEnZW.K53Thqzzjya');
+var smvalue904= datavalue(res9[0],'F1nIcbsEnZW.XBuwUD1utmH');
+var smvalue905= datavalue(res9[0],'F1nIcbsEnZW.K53Thqzzjya');
+var smvalue906= datavalue(res9[0],'F1nIcbsEnZW.XBuwUD1utmH');
+
+var ressmvalue14 = smvalue887	+smvalue888	+smvalue889	+smvalue890	+smvalue891	+smvalue892	+smvalue893	+smvalue894	+smvalue895	+smvalue896	+smvalue897	+smvalue898	+smvalue899	+smvalue900	+smvalue901	+smvalue902	+smvalue903	+smvalue904	+smvalue905	+smvalue906;
+
+var smvalue907= datavalue(res9[0],'j3VQdJsKFXc.J83ylYGKhbA');
+var smvalue908= datavalue(res9[0],'j3VQdJsKFXc.YFztQ2vR71N');
+var smvalue909= datavalue(res9[0],'j3VQdJsKFXc.pslMIlKFXBh');
+var smvalue910= datavalue(res9[0],'j3VQdJsKFXc.HUIWuBTBq08');
+var smvalue911= datavalue(res9[0],'j3VQdJsKFXc.yHSAPCLxecr');
+var smvalue912= datavalue(res9[0],'j3VQdJsKFXc.Pch5POkRK8D');
+var smvalue913= datavalue(res9[0],'j3VQdJsKFXc.UTolIBbDJGH');
+var smvalue914= datavalue(res9[0],'j3VQdJsKFXc.cJJJCGGLTOi');
+var smvalue915= datavalue(res9[0],'j3VQdJsKFXc.V0L9n6BBxKp');
+var smvalue916= datavalue(res9[0],'j3VQdJsKFXc.VDDnYYh4gAK');
+var smvalue917= datavalue(res9[0],'j3VQdJsKFXc.XpvgbSHy43w');
+var smvalue918= datavalue(res9[0],'j3VQdJsKFXc.qEaRHNTa7mi');
+var smvalue919= datavalue(res9[0],'j3VQdJsKFXc.cSY68ZH4wZg');
+var smvalue920= datavalue(res9[0],'j3VQdJsKFXc.Z9N77nA1ZwN');
+var smvalue921= datavalue(res9[0],'j3VQdJsKFXc.F1vIyc2K8oq');
+var smvalue922= datavalue(res9[0],'j3VQdJsKFXc.SKR6BiGmH39');
+var smvalue923= datavalue(res9[0],'j3VQdJsKFXc.K53Thqzzjya');
+var smvalue924= datavalue(res9[0],'j3VQdJsKFXc.XBuwUD1utmH');
+var smvalue925= datavalue(res9[0],'j3VQdJsKFXc.K53Thqzzjya');
+var smvalue926= datavalue(res9[0],'j3VQdJsKFXc.XBuwUD1utmH');
+
+var ressmvalue15 = smvalue907	+smvalue908	+smvalue909	+smvalue910	+smvalue911	+smvalue912	+smvalue913	+smvalue914	+smvalue915	+smvalue916	+smvalue917	+smvalue918	+smvalue919	+smvalue920	+smvalue921	+smvalue922	+smvalue923	+smvalue924	+smvalue925	+smvalue926;
+
+
+var smvalue927= datavalue(res9[0],'WKmjcdDsVw6.J83ylYGKhbA');
+var smvalue928= datavalue(res9[0],'WKmjcdDsVw6.YFztQ2vR71N');
+var smvalue929= datavalue(res9[0],'WKmjcdDsVw6.pslMIlKFXBh');
+var smvalue930= datavalue(res9[0],'WKmjcdDsVw6.HUIWuBTBq08');
+var smvalue931= datavalue(res9[0],'WKmjcdDsVw6.yHSAPCLxecr');
+var smvalue932= datavalue(res9[0],'WKmjcdDsVw6.Pch5POkRK8D');
+var smvalue933= datavalue(res9[0],'WKmjcdDsVw6.UTolIBbDJGH');
+var smvalue934= datavalue(res9[0],'WKmjcdDsVw6.cJJJCGGLTOi');
+var smvalue935= datavalue(res9[0],'WKmjcdDsVw6.V0L9n6BBxKp');
+var smvalue936= datavalue(res9[0],'WKmjcdDsVw6.VDDnYYh4gAK');
+var smvalue937= datavalue(res9[0],'WKmjcdDsVw6.XpvgbSHy43w');
+var smvalue938= datavalue(res9[0],'WKmjcdDsVw6.qEaRHNTa7mi');
+var smvalue939= datavalue(res9[0],'WKmjcdDsVw6.cSY68ZH4wZg');
+var smvalue940= datavalue(res9[0],'WKmjcdDsVw6.Z9N77nA1ZwN');
+var smvalue941= datavalue(res9[0],'WKmjcdDsVw6.F1vIyc2K8oq');
+var smvalue942= datavalue(res9[0],'WKmjcdDsVw6.SKR6BiGmH39');
+var smvalue943= datavalue(res9[0],'WKmjcdDsVw6.K53Thqzzjya');
+var smvalue944= datavalue(res9[0],'WKmjcdDsVw6.XBuwUD1utmH');
+var smvalue945= datavalue(res9[0],'WKmjcdDsVw6.K53Thqzzjya');
+var smvalue946= datavalue(res9[0],'WKmjcdDsVw6.XBuwUD1utmH');
+
+var ressmvalue16 = smvalue927	+smvalue928	+smvalue929	+smvalue930	+smvalue931	+smvalue932	+smvalue933	+smvalue934	+smvalue935	+smvalue936	+smvalue937	+smvalue938	+smvalue939	+smvalue940	+smvalue941	+smvalue942	+smvalue943	+smvalue944	+smvalue945	+smvalue946;
+
+var smvalue947= datavalue(res9[0],'ak5XoxnZ5Dw.J83ylYGKhbA');
+var smvalue948= datavalue(res9[0],'ak5XoxnZ5Dw.YFztQ2vR71N');
+var smvalue949= datavalue(res9[0],'ak5XoxnZ5Dw.pslMIlKFXBh');
+var smvalue950= datavalue(res9[0],'ak5XoxnZ5Dw.HUIWuBTBq08');
+var smvalue951= datavalue(res9[0],'ak5XoxnZ5Dw.yHSAPCLxecr');
+var smvalue952= datavalue(res9[0],'ak5XoxnZ5Dw.Pch5POkRK8D');
+var smvalue953= datavalue(res9[0],'ak5XoxnZ5Dw.UTolIBbDJGH');
+var smvalue954= datavalue(res9[0],'ak5XoxnZ5Dw.cJJJCGGLTOi');
+var smvalue955= datavalue(res9[0],'ak5XoxnZ5Dw.V0L9n6BBxKp');
+var smvalue956= datavalue(res9[0],'ak5XoxnZ5Dw.VDDnYYh4gAK');
+var smvalue957= datavalue(res9[0],'ak5XoxnZ5Dw.XpvgbSHy43w');
+var smvalue958= datavalue(res9[0],'ak5XoxnZ5Dw.qEaRHNTa7mi');
+var smvalue959= datavalue(res9[0],'ak5XoxnZ5Dw.cSY68ZH4wZg');
+var smvalue960= datavalue(res9[0],'ak5XoxnZ5Dw.Z9N77nA1ZwN');
+var smvalue961= datavalue(res9[0],'ak5XoxnZ5Dw.F1vIyc2K8oq');
+var smvalue962= datavalue(res9[0],'ak5XoxnZ5Dw.SKR6BiGmH39');
+var smvalue963= datavalue(res9[0],'ak5XoxnZ5Dw.K53Thqzzjya');
+var smvalue964= datavalue(res9[0],'ak5XoxnZ5Dw.XBuwUD1utmH');
+var smvalue965= datavalue(res9[0],'ak5XoxnZ5Dw.K53Thqzzjya');
+var smvalue966= datavalue(res9[0],'ak5XoxnZ5Dw.XBuwUD1utmH');
+
+var ressmvalue17 = smvalue947	+smvalue948	+smvalue949	+smvalue950	+smvalue951	+smvalue952	+smvalue953	+smvalue954	+smvalue955	+smvalue956	+smvalue957	+smvalue958	+smvalue959	+smvalue960	+smvalue961	+smvalue962	+smvalue963	+smvalue964	+smvalue965	+smvalue966	;
+
+var smvalue967= datavalue(res9[0],'eSWNNG2mOTV.J83ylYGKhbA');
+var smvalue968= datavalue(res9[0],'eSWNNG2mOTV.YFztQ2vR71N');
+var smvalue969= datavalue(res9[0],'eSWNNG2mOTV.pslMIlKFXBh');
+var smvalue970= datavalue(res9[0],'eSWNNG2mOTV.HUIWuBTBq08');
+var smvalue971= datavalue(res9[0],'eSWNNG2mOTV.yHSAPCLxecr');
+var smvalue972= datavalue(res9[0],'eSWNNG2mOTV.Pch5POkRK8D');
+var smvalue973= datavalue(res9[0],'eSWNNG2mOTV.UTolIBbDJGH');
+var smvalue974= datavalue(res9[0],'eSWNNG2mOTV.cJJJCGGLTOi');
+var smvalue975= datavalue(res9[0],'eSWNNG2mOTV.V0L9n6BBxKp');
+var smvalue976= datavalue(res9[0],'eSWNNG2mOTV.VDDnYYh4gAK');
+var smvalue977= datavalue(res9[0],'eSWNNG2mOTV.XpvgbSHy43w');
+var smvalue978= datavalue(res9[0],'eSWNNG2mOTV.qEaRHNTa7mi');
+var smvalue979= datavalue(res9[0],'eSWNNG2mOTV.cSY68ZH4wZg');
+var smvalue980= datavalue(res9[0],'eSWNNG2mOTV.Z9N77nA1ZwN');
+var smvalue981= datavalue(res9[0],'eSWNNG2mOTV.F1vIyc2K8oq');
+var smvalue982= datavalue(res9[0],'eSWNNG2mOTV.SKR6BiGmH39');
+var smvalue983= datavalue(res9[0],'eSWNNG2mOTV.K53Thqzzjya');
+var smvalue984= datavalue(res9[0],'eSWNNG2mOTV.XBuwUD1utmH');
+var smvalue985= datavalue(res9[0],'eSWNNG2mOTV.K53Thqzzjya');
+var smvalue986= datavalue(res9[0],'eSWNNG2mOTV.XBuwUD1utmH');
+var smvalue987= datavalue(res9[0],'Jj1vd5cLzwt.J83ylYGKhbA');
+var smvalue988= datavalue(res9[0],'Jj1vd5cLzwt.YFztQ2vR71N');
+var smvalue989= datavalue(res9[0],'Jj1vd5cLzwt.pslMIlKFXBh');
+var smvalue990= datavalue(res9[0],'Jj1vd5cLzwt.HUIWuBTBq08');
+var smvalue991= datavalue(res9[0],'Jj1vd5cLzwt.yHSAPCLxecr');
+var smvalue992= datavalue(res9[0],'Jj1vd5cLzwt.Pch5POkRK8D');
+var smvalue993= datavalue(res9[0],'Jj1vd5cLzwt.UTolIBbDJGH');
+var smvalue994= datavalue(res9[0],'Jj1vd5cLzwt.cJJJCGGLTOi');
+var smvalue995= datavalue(res9[0],'Jj1vd5cLzwt.V0L9n6BBxKp');
+var smvalue996= datavalue(res9[0],'Jj1vd5cLzwt.VDDnYYh4gAK');
+var smvalue997= datavalue(res9[0],'Jj1vd5cLzwt.XpvgbSHy43w');
+var smvalue998= datavalue(res9[0],'Jj1vd5cLzwt.qEaRHNTa7mi');
+var smvalue999= datavalue(res9[0],'Jj1vd5cLzwt.cSY68ZH4wZg');
+var smvalue1000= datavalue(res9[0],'Jj1vd5cLzwt.Z9N77nA1ZwN');
+var smvalue1001= datavalue(res9[0],'Jj1vd5cLzwt.F1vIyc2K8oq');
+var smvalue1002= datavalue(res9[0],'Jj1vd5cLzwt.SKR6BiGmH39');
+var smvalue1003= datavalue(res9[0],'Jj1vd5cLzwt.K53Thqzzjya');
+var smvalue1004= datavalue(res9[0],'Jj1vd5cLzwt.XBuwUD1utmH');
+var smvalue1005= datavalue(res9[0],'Jj1vd5cLzwt.K53Thqzzjya');
+var smvalue1006= datavalue(res9[0],'Jj1vd5cLzwt.XBuwUD1utmH');
+
+var ressmvalue18 = smvalue967	+smvalue968	+smvalue969	+smvalue970	+smvalue971	+smvalue972	+smvalue973	+smvalue974	+smvalue975	+smvalue976	+smvalue977	+smvalue978	+smvalue979	+smvalue980	+smvalue981	+smvalue982	+smvalue983	+smvalue984	+smvalue985	+smvalue986	+smvalue987	+smvalue988	+smvalue989	+smvalue990	+smvalue991	+smvalue992	+smvalue993	+smvalue994	+smvalue995	+smvalue996	+smvalue997	+smvalue998	+smvalue999	+smvalue1000+smvalue1001+smvalue1002+smvalue1003+smvalue1004+smvalue1005+smvalue1006;
+
+var smvalue1007= datavalue(res9[0],'IuAa73uen0T.J83ylYGKhbA');
+var smvalue1008= datavalue(res9[0],'IuAa73uen0T.YFztQ2vR71N');
+var smvalue1009= datavalue(res9[0],'IuAa73uen0T.pslMIlKFXBh');
+var smvalue1010= datavalue(res9[0],'IuAa73uen0T.HUIWuBTBq08');
+var smvalue1011= datavalue(res9[0],'IuAa73uen0T.yHSAPCLxecr');
+var smvalue1012= datavalue(res9[0],'IuAa73uen0T.Pch5POkRK8D');
+var smvalue1013= datavalue(res9[0],'IuAa73uen0T.UTolIBbDJGH');
+var smvalue1014= datavalue(res9[0],'IuAa73uen0T.cJJJCGGLTOi');
+var smvalue1015= datavalue(res9[0],'IuAa73uen0T.V0L9n6BBxKp');
+var smvalue1016= datavalue(res9[0],'IuAa73uen0T.VDDnYYh4gAK');
+var smvalue1017= datavalue(res9[0],'IuAa73uen0T.XpvgbSHy43w');
+var smvalue1018= datavalue(res9[0],'IuAa73uen0T.qEaRHNTa7mi');
+var smvalue1019= datavalue(res9[0],'IuAa73uen0T.cSY68ZH4wZg');
+var smvalue1020= datavalue(res9[0],'IuAa73uen0T.Z9N77nA1ZwN');
+var smvalue1021= datavalue(res9[0],'IuAa73uen0T.F1vIyc2K8oq');
+var smvalue1022= datavalue(res9[0],'IuAa73uen0T.SKR6BiGmH39');
+var smvalue1023= datavalue(res9[0],'IuAa73uen0T.K53Thqzzjya');
+var smvalue1024= datavalue(res9[0],'IuAa73uen0T.XBuwUD1utmH');
+var smvalue1025= datavalue(res9[0],'IuAa73uen0T.K53Thqzzjya');
+var smvalue1026= datavalue(res9[0],'IuAa73uen0T.XBuwUD1utmH');
+
+
+var ressmvalue19 = smvalue1007+smvalue1008+smvalue1009+smvalue1010+smvalue1011+smvalue1012+smvalue1013+smvalue1014+smvalue1015+smvalue1016+smvalue1017+smvalue1018+smvalue1019+smvalue1020+smvalue1021+smvalue1022+smvalue1023+smvalue1024+smvalue1025+smvalue1026;
+
+
+var smvalue1027= datavalue(res9[0],'kmU7UesJ3VX.J83ylYGKhbA');
+var smvalue1028= datavalue(res9[0],'kmU7UesJ3VX.YFztQ2vR71N');
+var smvalue1029= datavalue(res9[0],'kmU7UesJ3VX.pslMIlKFXBh');
+var smvalue1030= datavalue(res9[0],'kmU7UesJ3VX.HUIWuBTBq08');
+var smvalue1031= datavalue(res9[0],'kmU7UesJ3VX.yHSAPCLxecr');
+var smvalue1032= datavalue(res9[0],'kmU7UesJ3VX.Pch5POkRK8D');
+var smvalue1033= datavalue(res9[0],'kmU7UesJ3VX.UTolIBbDJGH');
+var smvalue1034= datavalue(res9[0],'kmU7UesJ3VX.cJJJCGGLTOi');
+var smvalue1035= datavalue(res9[0],'kmU7UesJ3VX.V0L9n6BBxKp');
+var smvalue1036= datavalue(res9[0],'kmU7UesJ3VX.VDDnYYh4gAK');
+var smvalue1037= datavalue(res9[0],'kmU7UesJ3VX.XpvgbSHy43w');
+var smvalue1038= datavalue(res9[0],'kmU7UesJ3VX.qEaRHNTa7mi');
+var smvalue1039= datavalue(res9[0],'kmU7UesJ3VX.cSY68ZH4wZg');
+var smvalue1040= datavalue(res9[0],'kmU7UesJ3VX.Z9N77nA1ZwN');
+var smvalue1041= datavalue(res9[0],'kmU7UesJ3VX.F1vIyc2K8oq');
+var smvalue1042= datavalue(res9[0],'kmU7UesJ3VX.SKR6BiGmH39');
+var smvalue1043= datavalue(res9[0],'kmU7UesJ3VX.K53Thqzzjya');
+var smvalue1044= datavalue(res9[0],'kmU7UesJ3VX.XBuwUD1utmH');
+var smvalue1045= datavalue(res9[0],'kmU7UesJ3VX.K53Thqzzjya');
+var smvalue1046= datavalue(res9[0],'kmU7UesJ3VX.XBuwUD1utmH');
+
+
+var ressmvalue20 = smvalue1027+smvalue1028+smvalue1029+smvalue1030+smvalue1031+smvalue1032+smvalue1033+smvalue1034+smvalue1035+smvalue1036+smvalue1037+smvalue1038+smvalue1039+smvalue1040+smvalue1041+smvalue1042+smvalue1043+smvalue1044+smvalue1045+smvalue1046;
+
+var smvalue1047= datavalue(res10[0],'h49vXr1IFHv.J83ylYGKhbA');
+var smvalue1048= datavalue(res10[0],'h49vXr1IFHv.YFztQ2vR71N');
+var smvalue1049= datavalue(res10[0],'h49vXr1IFHv.pslMIlKFXBh');
+var smvalue1050= datavalue(res10[0],'h49vXr1IFHv.HUIWuBTBq08');
+var smvalue1051= datavalue(res10[0],'h49vXr1IFHv.yHSAPCLxecr');
+var smvalue1052= datavalue(res10[0],'h49vXr1IFHv.Pch5POkRK8D');
+var smvalue1053= datavalue(res10[0],'h49vXr1IFHv.UTolIBbDJGH');
+var smvalue1054= datavalue(res10[0],'h49vXr1IFHv.cJJJCGGLTOi');
+var smvalue1055= datavalue(res10[0],'h49vXr1IFHv.V0L9n6BBxKp');
+var smvalue1056= datavalue(res10[0],'h49vXr1IFHv.VDDnYYh4gAK');
+var smvalue1057= datavalue(res10[0],'h49vXr1IFHv.XpvgbSHy43w');
+var smvalue1058= datavalue(res10[0],'h49vXr1IFHv.qEaRHNTa7mi');
+var smvalue1059= datavalue(res10[0],'h49vXr1IFHv.cSY68ZH4wZg');
+var smvalue1060= datavalue(res10[0],'h49vXr1IFHv.Z9N77nA1ZwN');
+var smvalue1061= datavalue(res10[0],'h49vXr1IFHv.F1vIyc2K8oq');
+var smvalue1062= datavalue(res10[0],'h49vXr1IFHv.SKR6BiGmH39');
+var smvalue1063= datavalue(res10[0],'h49vXr1IFHv.K53Thqzzjya');
+var smvalue1064= datavalue(res10[0],'h49vXr1IFHv.XBuwUD1utmH');
+var smvalue1065= datavalue(res10[0],'h49vXr1IFHv.K53Thqzzjya');
+var smvalue1066= datavalue(res10[0],'h49vXr1IFHv.XBuwUD1utmH');
+
+var ressmvalue21 = smvalue1047+smvalue1048+smvalue1049+smvalue1050+smvalue1051+smvalue1052+smvalue1053+smvalue1054+smvalue1055+smvalue1056+
+smvalue1057	+smvalue1058+smvalue1059+smvalue1060+smvalue1061+smvalue1062+smvalue1063+smvalue1064+smvalue1065+smvalue1066;
+
+var smvalue1067= datavalue(res10[0],'j6y7jHb2igZ.J83ylYGKhbA');
+var smvalue1068= datavalue(res10[0],'j6y7jHb2igZ.YFztQ2vR71N');
+var smvalue1069= datavalue(res10[0],'j6y7jHb2igZ.pslMIlKFXBh');
+var smvalue1070= datavalue(res10[0],'j6y7jHb2igZ.HUIWuBTBq08');
+var smvalue1071= datavalue(res10[0],'j6y7jHb2igZ.yHSAPCLxecr');
+var smvalue1072= datavalue(res10[0],'j6y7jHb2igZ.Pch5POkRK8D');
+var smvalue1073= datavalue(res10[0],'j6y7jHb2igZ.UTolIBbDJGH');
+var smvalue1074= datavalue(res10[0],'j6y7jHb2igZ.cJJJCGGLTOi');
+var smvalue1075= datavalue(res10[0],'j6y7jHb2igZ.V0L9n6BBxKp');
+var smvalue1076= datavalue(res10[0],'j6y7jHb2igZ.VDDnYYh4gAK');
+var smvalue1077= datavalue(res10[0],'j6y7jHb2igZ.XpvgbSHy43w');
+var smvalue1078= datavalue(res10[0],'j6y7jHb2igZ.qEaRHNTa7mi');
+var smvalue1079= datavalue(res10[0],'j6y7jHb2igZ.cSY68ZH4wZg');
+var smvalue1080= datavalue(res10[0],'j6y7jHb2igZ.Z9N77nA1ZwN');
+var smvalue1081= datavalue(res10[0],'j6y7jHb2igZ.F1vIyc2K8oq');
+var smvalue1082= datavalue(res10[0],'j6y7jHb2igZ.SKR6BiGmH39');
+var smvalue1083= datavalue(res10[0],'j6y7jHb2igZ.K53Thqzzjya');
+var smvalue1084= datavalue(res10[0],'j6y7jHb2igZ.XBuwUD1utmH');
+var smvalue1085= datavalue(res10[0],'j6y7jHb2igZ.K53Thqzzjya');
+var smvalue1086= datavalue(res10[0],'j6y7jHb2igZ.XBuwUD1utmH');
+var smvalue1087= datavalue(res10[0],'P6LcmRcBDdW.J83ylYGKhbA');
+var smvalue1088= datavalue(res10[0],'P6LcmRcBDdW.YFztQ2vR71N');
+var smvalue1089= datavalue(res10[0],'P6LcmRcBDdW.pslMIlKFXBh');
+var smvalue1090= datavalue(res10[0],'P6LcmRcBDdW.HUIWuBTBq08');
+var smvalue1091= datavalue(res10[0],'P6LcmRcBDdW.yHSAPCLxecr');
+var smvalue1092= datavalue(res10[0],'P6LcmRcBDdW.Pch5POkRK8D');
+var smvalue1093= datavalue(res10[0],'P6LcmRcBDdW.UTolIBbDJGH');
+var smvalue1094= datavalue(res10[0],'P6LcmRcBDdW.cJJJCGGLTOi');
+var smvalue1095= datavalue(res10[0],'P6LcmRcBDdW.V0L9n6BBxKp');
+var smvalue1096= datavalue(res10[0],'P6LcmRcBDdW.VDDnYYh4gAK');
+var smvalue1097= datavalue(res10[0],'P6LcmRcBDdW.XpvgbSHy43w');
+var smvalue1098= datavalue(res10[0],'P6LcmRcBDdW.qEaRHNTa7mi');
+var smvalue1099= datavalue(res10[0],'P6LcmRcBDdW.cSY68ZH4wZg');
+var smvalue1100= datavalue(res10[0],'P6LcmRcBDdW.Z9N77nA1ZwN');
+var smvalue1101= datavalue(res10[0],'P6LcmRcBDdW.F1vIyc2K8oq');
+var smvalue1102= datavalue(res10[0],'P6LcmRcBDdW.SKR6BiGmH39');
+var smvalue1103= datavalue(res10[0],'P6LcmRcBDdW.K53Thqzzjya');
+var smvalue1104= datavalue(res10[0],'P6LcmRcBDdW.XBuwUD1utmH');
+var smvalue1105= datavalue(res10[0],'P6LcmRcBDdW.K53Thqzzjya');
+var smvalue1106= datavalue(res10[0],'P6LcmRcBDdW.XBuwUD1utmH');
+var smvalue1107= datavalue(res10[0],'iX7UNx5UbI7.J83ylYGKhbA');
+var smvalue1108= datavalue(res10[0],'iX7UNx5UbI7.YFztQ2vR71N');
+var smvalue1109= datavalue(res10[0],'iX7UNx5UbI7.pslMIlKFXBh');
+var smvalue1110= datavalue(res10[0],'iX7UNx5UbI7.HUIWuBTBq08');
+var smvalue1111= datavalue(res10[0],'iX7UNx5UbI7.yHSAPCLxecr');
+var smvalue1112= datavalue(res10[0],'iX7UNx5UbI7.Pch5POkRK8D');
+var smvalue1113= datavalue(res10[0],'iX7UNx5UbI7.UTolIBbDJGH');
+var smvalue1114= datavalue(res10[0],'iX7UNx5UbI7.cJJJCGGLTOi');
+var smvalue1115= datavalue(res10[0],'iX7UNx5UbI7.V0L9n6BBxKp');
+var smvalue1116= datavalue(res10[0],'iX7UNx5UbI7.VDDnYYh4gAK');
+var smvalue1117= datavalue(res10[0],'iX7UNx5UbI7.XpvgbSHy43w');
+var smvalue1118= datavalue(res10[0],'iX7UNx5UbI7.qEaRHNTa7mi');
+var smvalue1119= datavalue(res10[0],'iX7UNx5UbI7.cSY68ZH4wZg');
+var smvalue1120= datavalue(res10[0],'iX7UNx5UbI7.Z9N77nA1ZwN');
+var smvalue1121= datavalue(res10[0],'iX7UNx5UbI7.F1vIyc2K8oq');
+var smvalue1122= datavalue(res10[0],'iX7UNx5UbI7.SKR6BiGmH39');
+var smvalue1123= datavalue(res10[0],'iX7UNx5UbI7.K53Thqzzjya');
+var smvalue1124= datavalue(res10[0],'iX7UNx5UbI7.XBuwUD1utmH');
+var smvalue1125= datavalue(res10[0],'iX7UNx5UbI7.K53Thqzzjya');
+var smvalue1126= datavalue(res10[0],'iX7UNx5UbI7.XBuwUD1utmH');
+var smvalue1127= datavalue(res10[0],'xXU012ATYAs.J83ylYGKhbA');
+var smvalue1128= datavalue(res10[0],'xXU012ATYAs.YFztQ2vR71N');
+var smvalue1129= datavalue(res10[0],'xXU012ATYAs.pslMIlKFXBh');
+var smvalue1130= datavalue(res10[0],'xXU012ATYAs.HUIWuBTBq08');
+var smvalue1131= datavalue(res10[0],'xXU012ATYAs.yHSAPCLxecr');
+var smvalue1132= datavalue(res10[0],'xXU012ATYAs.Pch5POkRK8D');
+var smvalue1133= datavalue(res10[0],'xXU012ATYAs.UTolIBbDJGH');
+var smvalue1134= datavalue(res10[0],'xXU012ATYAs.cJJJCGGLTOi');
+var smvalue1135= datavalue(res10[0],'xXU012ATYAs.V0L9n6BBxKp');
+var smvalue1136= datavalue(res10[0],'xXU012ATYAs.VDDnYYh4gAK');
+var smvalue1137= datavalue(res10[0],'xXU012ATYAs.XpvgbSHy43w');
+var smvalue1138= datavalue(res10[0],'xXU012ATYAs.qEaRHNTa7mi');
+var smvalue1139= datavalue(res10[0],'xXU012ATYAs.cSY68ZH4wZg');
+var smvalue1140= datavalue(res10[0],'xXU012ATYAs.Z9N77nA1ZwN');
+var smvalue1141= datavalue(res10[0],'xXU012ATYAs.F1vIyc2K8oq');
+var smvalue1142= datavalue(res10[0],'xXU012ATYAs.SKR6BiGmH39');
+var smvalue1143= datavalue(res10[0],'xXU012ATYAs.K53Thqzzjya');
+var smvalue1144= datavalue(res10[0],'xXU012ATYAs.XBuwUD1utmH');
+var smvalue1145= datavalue(res10[0],'xXU012ATYAs.K53Thqzzjya');
+var smvalue1146= datavalue(res10[0],'xXU012ATYAs.XBuwUD1utmH');
+
+var ressmvalue22 = smvalue1067+smvalue1068+smvalue1069+smvalue1070+smvalue1071+smvalue1072+smvalue1073+smvalue1074+smvalue1075+smvalue1076+smvalue1077+smvalue1078+smvalue1079+smvalue1080+smvalue1081+smvalue1082+smvalue1083+smvalue1084+smvalue1085+smvalue1086+smvalue1087+smvalue1088+smvalue1089+smvalue1090+smvalue1091+smvalue1092+smvalue1093+smvalue1094+smvalue1095+smvalue1096+smvalue1097+smvalue1098+smvalue1099+smvalue1100+smvalue1101+smvalue1102+smvalue1103+smvalue1104+smvalue1105+smvalue1106+smvalue1107+smvalue1108+smvalue1109+smvalue1110+smvalue1111+smvalue1112+smvalue1113+smvalue1114+smvalue1115+smvalue1116+smvalue1117+smvalue1118+smvalue1119+smvalue1120+smvalue1121+smvalue1122+smvalue1123+smvalue1124+smvalue1125+smvalue1126+smvalue1127+smvalue1128+smvalue1129+smvalue1130+smvalue1131+smvalue1132+smvalue1133+smvalue1134+smvalue1135+smvalue1136+smvalue1137+smvalue1138+smvalue1139+smvalue1140+smvalue1141+smvalue1142+smvalue1143+smvalue1144+smvalue1145+smvalue1146;
+
+var smvalue1147= datavalue(res10[0],'WvhsnkOw5Rl.J83ylYGKhbA');
+var smvalue1148= datavalue(res10[0],'WvhsnkOw5Rl.YFztQ2vR71N');
+var smvalue1149= datavalue(res10[0],'WvhsnkOw5Rl.pslMIlKFXBh');
+var smvalue1150= datavalue(res10[0],'WvhsnkOw5Rl.HUIWuBTBq08');
+var smvalue1151= datavalue(res10[0],'WvhsnkOw5Rl.yHSAPCLxecr');
+var smvalue1152= datavalue(res10[0],'WvhsnkOw5Rl.Pch5POkRK8D');
+var smvalue1153= datavalue(res10[0],'WvhsnkOw5Rl.UTolIBbDJGH');
+var smvalue1154= datavalue(res10[0],'WvhsnkOw5Rl.cJJJCGGLTOi');
+var smvalue1155= datavalue(res10[0],'WvhsnkOw5Rl.V0L9n6BBxKp');
+var smvalue1156= datavalue(res10[0],'WvhsnkOw5Rl.VDDnYYh4gAK');
+var smvalue1157= datavalue(res10[0],'WvhsnkOw5Rl.XpvgbSHy43w');
+var smvalue1158= datavalue(res10[0],'WvhsnkOw5Rl.qEaRHNTa7mi');
+var smvalue1159= datavalue(res10[0],'WvhsnkOw5Rl.cSY68ZH4wZg');
+var smvalue1160= datavalue(res10[0],'WvhsnkOw5Rl.Z9N77nA1ZwN');
+var smvalue1161= datavalue(res10[0],'WvhsnkOw5Rl.F1vIyc2K8oq');
+var smvalue1162= datavalue(res10[0],'WvhsnkOw5Rl.SKR6BiGmH39');
+var smvalue1163= datavalue(res10[0],'WvhsnkOw5Rl.K53Thqzzjya');
+var smvalue1164= datavalue(res10[0],'WvhsnkOw5Rl.XBuwUD1utmH');
+var smvalue1165= datavalue(res10[0],'WvhsnkOw5Rl.K53Thqzzjya');
+var smvalue1166= datavalue(res10[0],'WvhsnkOw5Rl.XBuwUD1utmH');
+
+var ressmvalue23 = smvalue1147+smvalue1148+smvalue1149+smvalue1150+smvalue1151+smvalue1152+smvalue1153+smvalue1154+smvalue1155+smvalue1156+
+smvalue1157	+smvalue1158+smvalue1159+smvalue1160+smvalue1161+smvalue1162+smvalue1163+smvalue1164+smvalue1165+smvalue1166;
 
 
            // ------------------------------- SERVICE MORE THAN 25 END----------------------------------------
-            //$scope.loaderName;
 
-            var tabledata = '<tr>';
-
-
-            tabledata += ("<tr><td>" + "NEW-1121120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue1 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1122120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue2 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1123020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue3 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1124120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue4 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1124220000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue5 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1126020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue6 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1131020211000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue7 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1132120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue8 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1141120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue9 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1142020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue10 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1151020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue11 + "</td><td></td><td></td><td></td><td></td></tr>");
+            var tabledata = '';
 
 
-            tabledata += ("<tr><td>" + "NEW-1121120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue1 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1122120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue2 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1123020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue3 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1124120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue4 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1124220000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue5 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1126020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue6 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1131020211000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue7 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1132120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue8 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1141120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue9 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1142020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue10 + "</td><td></td><td></td><td></td><td></td></tr></tr><td>" + "NEW-1151020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue11 + "</td><td></td><td></td><td></td><td></td></tr>");
+            tabledata += ("<tr><td>" + "NEW-1121120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue1 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1122120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue2 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1123020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue3 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1124120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue4 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1124220000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue5 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1126020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue6 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1131020211000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue7 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1132120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue8 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1141120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue9 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1142020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue10 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1151020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + resnmvalue11 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr>");
 
-            tabledata += ("<tr><td>" + "SRV-1110010900000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue1 + "</td><td></td><td></td><td></td><td></td></tr><tr><td>" + "SRV-1123020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue2 + "</td><td></td><td></td><td></td><td></td></tr><tr><td>" + "SRV-1124120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue3 + "</td><td></td><td></td><td></td><td></td></tr><tr><td>" + "SRV-1124220000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue4 + "</td><td></td><td></td><td></td><td></td></tr><tr><td>" + "SRV-1125020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue5 + "</td><td></td><td></td><td></td><td></td></tr><tr><td>" + "SRV-1126020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue6 + "</td><td></td><td></td><td></td><td></td></tr><tr><td>" + "SRV-1131020211000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue7 + "</td><td></td><td></td><td></td><td></td></tr>");
 
-            tabledata += "</tr>";
+            tabledata += ("<tr><td>" + "NEW-1121120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue1 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1122120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue2 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1123020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue3 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1124120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue4 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1124220000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue5 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1126020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue6 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1131020211000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue7 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1132120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue8 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1141120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue9 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1142020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue10 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "NEW-1151020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + less25 + "</td><td>" + aoc + "</td><td>" + resnlvalue11 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr>");
+
+            tabledata += ("<tr><td>" + "SRV-1110010900000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue1 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1123020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue2 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1124120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue3 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1124220000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue4 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1125020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue5 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1126020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue6 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1131020211000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue7 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1131120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue8 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1132020211000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue9 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1132120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue10 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141000000800" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue11 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141110000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue12 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141120000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue13 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141130302101" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue14 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141130302102A" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue15 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141130302103A" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue16 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141130302104A" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue17 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141130302105A" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue18 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141130302106A" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue19 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1141130302107" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue20 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1142010000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue21 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1142020000000" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue22 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr><tr><td>" + "SRV-1142030302101" + "</td><td>" + periodIds + "</td><td>" + codes + "</td><td>" + more25 + "</td><td>" + aoc + "</td><td>" + ressmvalue23 + "</td><td>"+$scope.me+"</td><td>"+$scope.today+"</td><td>FALSE</td><td></td></tr>");
+
 
             $('.reporttable').append(tabledata);
 
@@ -1001,6 +2026,8 @@ smvalue240	+smvalue241	+smvalue242	+smvalue243	+smvalue244	+smvalue245	+smvalue2
             }
             return (value1);
         }
+
+
 
 
         /**************************************************************************************************************/
