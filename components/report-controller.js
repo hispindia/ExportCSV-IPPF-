@@ -22,8 +22,8 @@ ExportCSVApp.controller('reportController',
         //  var filename = 'members.csv';
 
         var aoc = 'X66r2y4EuwS';
-        var more25 = 'CrE6h9KphAO';
-        var less25 = 'Y2c16vWPBox';
+        var more25 = 'mYU1cpPLbA3';
+        var less25 = 'BpkvMcVXQgy';
 
 
 // Code for date 
@@ -37,7 +37,7 @@ dd = '0' + dd
 if (mm < 10) {
 mm = '0' + mm
 }
-$scope.today = dd + '/' + mm + '/' + yyyy;
+$scope.today ="01-01-" + yyyy;
 
 $.get('../../me.json?paging=false', function (user){
 
